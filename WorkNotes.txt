@@ -1,0 +1,5 @@
+Work Notes:
+
+Checking Slate for use as editor base
+just installed and added to TextEdit.js
+need to follow docs to verify this will work for me
