@@ -1,5 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+Mono');
+
 .App {
   text-align: center;
+}
+
+body {
+  font-family: 'Noto Sans Mono';
 }
 
 .black-text-box {
