@@ -4,7 +4,7 @@ import {createEditor, Editor} from 'slate';
 import { FaBold, FaItalic, FaUnderline } from "react-icons/fa";
 import { Button } from 'react-bootstrap';
 
-export default function TextEdit() {
+export default function TextEdit({editorColors}) {
   const [editor] = useState(()=> withReact(createEditor()));
   const initialValue = useMemo(
     () =>
@@ -44,9 +44,9 @@ export default function TextEdit() {
           }
         }}>
       <div>
-        <MarkButton format="bold" icon={<FaBold/>}/>
-        <MarkButton format="italic" icon={<FaItalic />}/>
-        <MarkButton format="underline" icon={<FaUnderline />}/>
+        <MarkButton format="bold" icon={<FaBold/>} editorColors={editorColors}/>
+        <MarkButton format="italic" icon={<FaItalic />} editorColors={editorColors}/>
+        <MarkButton format="underline" icon={<FaUnderline />} editorColors={editorColors}/>
       </div>
       <Editable
         renderElement={renderElement}
@@ -77,11 +77,12 @@ const Leaf = ({ attributes, children, leaf }) => {
   return <span {...attributes}>{children}</span>
 }
 
-const MarkButton = ({ format, icon }) => {
+const MarkButton = ({ format, icon, editorColors }) => {
   const editor = useSlate()
   return (
     <Button
       active={isMarkActive(editor, format)}
+      className={`editor-button ${editorColors.value}`}
       onMouseDown={event => {
         event.preventDefault()
         toggleMark(editor, format)
