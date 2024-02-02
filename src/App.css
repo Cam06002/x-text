@@ -63,14 +63,16 @@ body {
 
 .modal-style {
   display: flex;
-  height:100vh!important;
+  height:100vh !important;
   max-width:none!important;
   width:100%!important;
   justify-items: center !important;
   justify-content: center !important;
+  justify-self: center !important;
   align-items: center !important;
   align-content: center !important;
-  background-color: green;
+  align-self: center !important;
+  background-color: white;
 }
 
 .center-all{

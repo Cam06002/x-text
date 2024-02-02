@@ -2,7 +2,11 @@ import { Button, Form, Modal } from 'react-bootstrap';
 
 export default function LoginView({
     isLogin,
-    HandleCloseLogin
+    HandleCloseLogin,
+    email,
+    setEmail,
+    password,
+    setPassword
 }){
     return (
         <Modal dialogClassName='modal-style' show={isLogin} onHide={HandleCloseLogin}>
@@ -11,8 +15,8 @@ export default function LoginView({
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                    <Form.Control type='email' placeholder='email@example.com'/>
-                    <Form.Control type='password'/>
+                    <Form.Control type='email' placeholder='email@example.com' value={email} onChange={(e)=>{setEmail(e.target.value)}}/>
+                    <Form.Control type='password' value={password} onChange={(e)=>setPassword(e.target.value)}/>
                 </Form>
             </Modal.Body>
             <Modal.Footer>
