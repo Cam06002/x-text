@@ -24,8 +24,8 @@ body {
 }
 
 .pink-text-box {
-  background-color: pink;
-  color: purple;
+  background-color: pink !important;
+  color: purple !important;
 }
 
 .box-sizer {
@@ -44,5 +44,19 @@ body {
 }
 
 .item-gapper {
-  margin-left: 10px
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.editor-button {
+  filter: grayscale(20%);
+  padding: 8px 5px 5px 5px;
+}
+
+.editor-button:hover{
+  filter:sepia(50%);
+}
+
+.editor-button:active{
+  filter:hue-rotate(180deg)
 }
