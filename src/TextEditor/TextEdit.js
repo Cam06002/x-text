@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { Slate, Editable, withReact, useSlate } from 'slate-react';
 import {createEditor, Editor} from 'slate';
 import { FaBold, FaItalic, FaUnderline } from "react-icons/fa";
@@ -6,12 +6,16 @@ import { Button } from 'react-bootstrap';
 
 export default function TextEdit() {
   const [editor] = useState(()=> withReact(createEditor()));
-  const initialValue = [
-    {
-      type: 'paragraph',
-      children: [{text: 'A line of text.'}]
-    }
-  ];
+  const initialValue = useMemo(
+    () =>
+      JSON.parse(localStorage.getItem('content')) || [
+        {
+          type: 'paragraph',
+          children: [{ text: 'A line of text in a paragraph.' }],
+        },
+      ],
+    []
+  );
 
   const renderElement = useCallback(props => {
     switch (props.element.type) {
@@ -26,7 +30,19 @@ export default function TextEdit() {
   
   return (
     <>
-      <Slate editor={editor} initialValue={initialValue} className={'box-sizer'}>
+      <Slate 
+        editor={editor} 
+        initialValue={initialValue} 
+        onChange={value => {
+          const isAstChange = editor.operations.some(
+            op => 'set_selection' !== op.type
+          )
+          if (isAstChange) {
+            // Save the value to Local Storage.
+            const content = JSON.stringify(value)
+            localStorage.setItem('content', content)
+          }
+        }}>
       <div>
         <MarkButton format="bold" icon={<FaBold/>}/>
         <MarkButton format="italic" icon={<FaItalic />}/>
