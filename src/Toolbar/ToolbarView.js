@@ -1,7 +1,9 @@
+import React, {useContext} from "react";
 import { Button } from "react-bootstrap";
 import Select from "react-select";
 import Login from "../Auth/login";
 import Register from "../Auth/register";
+import { AuthContext } from "../Auth/auth-context";
 
 export default function ToolbarView({
     colorOptions,
@@ -16,6 +18,7 @@ export default function ToolbarView({
     HandleOpenRegistration,
     HandleCloseRegistration
 }){
+    const auth = useContext(AuthContext);
 
     const customSelectStyles = {
         control: base => ({
@@ -33,18 +36,18 @@ export default function ToolbarView({
         <div className="toolbar-div">
             <h3 className="item-gapper">X-Text</h3>
 
-            {/* <Button className={`item-gapper ${editorColors.value}`}>Save</Button>
-            <Button className={`item-gapper ${editorColors.value}`}>Load</Button> */}
+            {auth.isLoggedIn&&<Button className={`item-gapper ${editorColors.value}`}>Save</Button>}
+            {auth.isLoggedIn&&<Button className={`item-gapper ${editorColors.value}`}>Load</Button>}
 
-            <Button 
+            {!auth.isLoggedIn&&<Button 
                 className={`item-gapper ${editorColors.value}`}
                 onClick={()=>HandleOpenLogin()}
-            >Log In</Button>
+            >Log In</Button>}
 
-            <Button 
+            {!auth.isLoggedIn&&<Button 
                 className={`item-gapper ${editorColors.value}`}
                 onClick={()=>HandleOpenRegistration()}
-            >Register</Button>
+            >Register</Button>}
 
             <Select
                 options={colorOptions}

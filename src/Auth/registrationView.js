@@ -8,7 +8,8 @@ export default function RegistrationView({
     email,
     setEmail,
     password,
-    setPassword
+    setPassword,
+    HandleRegister
 }){
     return (
         <Modal dialogClassName='modal-style' show={isRegistration} onHide={HandleCloseRegistration}>
@@ -23,7 +24,7 @@ export default function RegistrationView({
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={()=>HandleCloseRegistration()}>Submit</Button>
+                <Button onClick={(e)=>HandleRegister(e)}>Submit</Button>
             </Modal.Footer>
         </Modal>
     )

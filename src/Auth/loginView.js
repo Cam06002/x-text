@@ -6,7 +6,8 @@ export default function LoginView({
     email,
     setEmail,
     password,
-    setPassword
+    setPassword,
+    HandleLogin
 }){
     return (
         <Modal dialogClassName='modal-style' show={isLogin} onHide={HandleCloseLogin}>
@@ -20,7 +21,7 @@ export default function LoginView({
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-            <Button onClick={()=>HandleCloseLogin()}>Submit</Button>
+            <Button onClick={(e)=>HandleLogin(e)}>Submit</Button>
             </Modal.Footer>
         </Modal>
     )
