@@ -14,6 +14,7 @@ export default function Toolbar({
 
     const [isLogin, setIsLogin] = useState(false);
     const [isRegistration, setIsRegistration] = useState(false);
+    const [isError, setIsError] = useState(false);
 
     const HandleOpenLogin = () => {
         setIsLogin(true);
@@ -45,6 +46,9 @@ export default function Toolbar({
             isRegistration={isRegistration}
             HandleOpenRegistration={HandleOpenRegistration}
             HandleCloseRegistration={HandleCloseRegistration}
+
+            isError={isError}
+            setIsError={setIsError}
         />
         </>
     )

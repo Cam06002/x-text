@@ -16,7 +16,10 @@ export default function ToolbarView({
 
     isRegistration,
     HandleOpenRegistration,
-    HandleCloseRegistration
+    HandleCloseRegistration,
+
+    isError,
+    setIsError
 }){
     const auth = useContext(AuthContext);
 
@@ -27,11 +30,25 @@ export default function ToolbarView({
         }),
     };
 
+    const HandleClearError = ()=>{
+        setIsError(false);
+    };
+
     return(
         <>
         {(isLogin || isRegistration) && <div className="center-all">
-            {isLogin&&<Login isLogin={isLogin} HandleCloseLogin={HandleCloseLogin} />}
-            {isRegistration&&<Register isRegistration={isRegistration} HandleCloseRegistration={HandleCloseRegistration} />}    
+            {isLogin&&<Login 
+                isLogin={isLogin} 
+                HandleCloseLogin={HandleCloseLogin}
+                isError={isError}
+                HandleClearError={HandleClearError}
+            />}
+            {isRegistration&&<Register 
+                isRegistration={isRegistration} 
+                HandleCloseRegistration={HandleCloseRegistration} 
+                isError={isError}
+                HandleClearError={HandleClearError}
+            />}    
         </div>}
         <div className="toolbar-div">
             <h3 className="item-gapper">X-Text</h3>

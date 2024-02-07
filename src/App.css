@@ -81,3 +81,7 @@ body {
   align-items: center !important;
   align-content: center !important;
 }
+
+.vertical-margins {
+  margin: 1rem 0rem 1rem 0rem !important;
+}
