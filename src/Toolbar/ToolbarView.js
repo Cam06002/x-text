@@ -1,28 +1,24 @@
 import React, {useContext} from "react";
 import { Button } from "react-bootstrap";
 import Select from "react-select";
-import Login from "../Auth/login";
-import Register from "../Auth/register";
-import { AuthContext } from "../Auth/auth-context";
-import SaveFile from "../FileHandling/save-file";
+import { AuthContext } from "../Auth/authContext";
+import SaveFile from "../FileHandling/saveFile";
+import AuthLogic from "../Auth/authLogic";
 
 export default function ToolbarView({
     colorOptions,
     editorColors,
     onColorChange,
 
-    isLogin,
+    authType,
+    HandleCloseAuth,
     HandleOpenLogin,
-    HandleCloseLogin,
-
-    isRegistration,
     HandleOpenRegistration,
-    HandleCloseRegistration,
 
-    isError,
-    setIsError,
     editorContent,
-    title
+    setEditorContent,
+    title,
+    setTitle
 }){
     const auth = useContext(AuthContext);
 
@@ -33,25 +29,13 @@ export default function ToolbarView({
         }),
     };
 
-    const HandleClearError = ()=>{
-        setIsError(false);
-    };
-
     return(
         <>
-        {(isLogin || isRegistration) && <div className="center-all">
-            {isLogin&&<Login 
-                isLogin={isLogin} 
-                HandleCloseLogin={HandleCloseLogin}
-                isError={isError}
-                HandleClearError={HandleClearError}
-            />}
-            {isRegistration&&<Register 
-                isRegistration={isRegistration} 
-                HandleCloseRegistration={HandleCloseRegistration} 
-                isError={isError}
-                HandleClearError={HandleClearError}
-            />}    
+        {authType&& <div className="center-all">
+            <AuthLogic 
+                authType={authType}
+                HandleCloseAuth={HandleCloseAuth}
+            />
         </div>}
         <div className="toolbar-div">
             <h3 className="item-gapper">X-Text</h3>

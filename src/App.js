@@ -1,6 +1,6 @@
 import React, {useState, useCallback} from 'react';
 import TextPage from './TextPage';
-import { AuthContext } from './Auth/auth-context';
+import { AuthContext } from './Auth/authContext';
 import './App.css';
 
 export default function App() {

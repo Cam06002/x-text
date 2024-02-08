@@ -1,28 +1,37 @@
+import React from "react";
 import { Button, Form, Modal, Spinner, Alert } from 'react-bootstrap';
+import CallApi from "../CallApi";
 
-export default function RegistrationView({
-    isRegistration,
-    HandleCloseRegistration,
+export default function AuthView({
+    authType,
+    HandleCloseAuth,
+    apiParams,
+
     name,
     setName,
     email,
     setEmail,
     password,
     setPassword,
-    HandleRegister,
+
     isLoading,
-    error
+    error,
 }){
-    return (
-        <>
-        <Modal dialogClassName='modal-style' show={isRegistration} onHide={HandleCloseRegistration}>
+    return(
+        <Modal dialogClassName='modal-style' show={authType} onHide={HandleCloseAuth}>
             <Modal.Header>
-                <h3>Register</h3>
+                {authType === 'login' ? <h3>Login</h3> : <h3>Register</h3>}
             </Modal.Header>
             <Modal.Body>
                 {isLoading ? <Spinner animation='border' size='sm' />
                 : <Form>
-                    <Form.Control type='text' placeholder='Name' value={name} onChange={(e)=>setName(e.target.value)}/>
+                    {authType === 'registration' && 
+                        <Form.Control 
+                            type='text' 
+                            placeholder='Name' 
+                            value={name} 
+                            onChange={(e)=>setName(e.target.value)}
+                        />}
                     <Form.Control type='email' placeholder='email@example.com' value={email} onChange={(e)=>{setEmail(e.target.value)}}/>
                     <Form.Control type='password' value={password} onChange={(e)=>setPassword(e.target.value)}/>
                 </Form>}
@@ -31,10 +40,10 @@ export default function RegistrationView({
                 </div>}
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={(e)=>HandleRegister(e)}>Submit</Button>
-                <Button onClick={()=>HandleCloseRegistration()}>Close</Button>
+                <Button onClick={()=>CallApi(apiParams)}>Submit</Button>
+                <Button onClick={()=>HandleCloseAuth()}>Close</Button>
             </Modal.Footer>
         </Modal>
-        </>
     )
+
 }

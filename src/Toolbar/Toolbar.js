@@ -16,25 +16,19 @@ export default function Toolbar({
         {value: 'pink-text-box', label: 'pink'}
     ];
 
-    const [isLogin, setIsLogin] = useState(false);
-    const [isRegistration, setIsRegistration] = useState(false);
-    const [isError, setIsError] = useState(false);
+    const [authType, setAuthType] = useState(false);
 
     const HandleOpenLogin = () => {
-        setIsLogin(true);
-    };
-
-    const HandleCloseLogin = () => {
-        setIsLogin(false);
+        setAuthType('login');
     };
 
     const HandleOpenRegistration = () => {
-        setIsRegistration(true);
+        setAuthType('registration');
     };
 
-    const HandleCloseRegistration = () => {
-        setIsRegistration(false);
-    };
+    const HandleCloseAuth = () => {
+        setAuthType(false);
+    }
 
     return(
         <>
@@ -43,16 +37,10 @@ export default function Toolbar({
             editorColors={editorColors}
             onColorChange={onColorChange}
 
-            isLogin={isLogin}
+            authType={authType}
+            HandleCloseAuth={HandleCloseAuth}
             HandleOpenLogin={HandleOpenLogin}
-            HandleCloseLogin={HandleCloseLogin}
-
-            isRegistration={isRegistration}
             HandleOpenRegistration={HandleOpenRegistration}
-            HandleCloseRegistration={HandleCloseRegistration}
-
-            isError={isError}
-            setIsError={setIsError}
 
             editorContent={editorContent}
             setEditorContent={setEditorContent}
