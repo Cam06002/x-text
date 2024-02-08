@@ -3,7 +3,11 @@ import ToolbarView from "./ToolbarView";
 
 export default function Toolbar({
     editorColors,
-    onColorChange
+    onColorChange,
+    editorContent,
+    setEditorContent,
+    title,
+    setTitle
 }){
     const colorOptions = [
         {value: 'blue-text-box', label: 'blue'},
@@ -49,6 +53,11 @@ export default function Toolbar({
 
             isError={isError}
             setIsError={setIsError}
+
+            editorContent={editorContent}
+            setEditorContent={setEditorContent}
+            title={title}
+            setTitle={setTitle}
         />
         </>
     )

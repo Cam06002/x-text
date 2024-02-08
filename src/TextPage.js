@@ -6,7 +6,8 @@ import './App.css';
 export default function TextPage(){
 
     const [editorColors, setEditorColors] = useState({value: 'black-text-box', label: 'black'});
-
+    const [editorContent, setEditorContent] = useState('');
+    const [title, setTitle] = useState('');
     const onColorChange = (e) =>{
         setEditorColors(e);
         console.log(e);
@@ -21,11 +22,19 @@ export default function TextPage(){
                 <Toolbar 
                     editorColors={editorColors}
                     onColorChange={onColorChange}
+                    editorContent={editorContent}
+                    setEditorContent={setEditorContent}
+                    title={title}
+                    setTitle={setTitle}
                 />
             </div>
             <div className="box-sizer">
                 <TextEdit 
                     editorColors={editorColors}
+                    editorContent={editorContent}
+                    setEditorContent={setEditorContent}
+                    title={title}
+                    setTitle={setTitle}
                 />
             </div>
         </div>

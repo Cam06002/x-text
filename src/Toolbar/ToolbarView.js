@@ -4,6 +4,7 @@ import Select from "react-select";
 import Login from "../Auth/login";
 import Register from "../Auth/register";
 import { AuthContext } from "../Auth/auth-context";
+import SaveFile from "../FileHandling/save-file";
 
 export default function ToolbarView({
     colorOptions,
@@ -19,7 +20,9 @@ export default function ToolbarView({
     HandleCloseRegistration,
 
     isError,
-    setIsError
+    setIsError,
+    editorContent,
+    title
 }){
     const auth = useContext(AuthContext);
 
@@ -53,8 +56,14 @@ export default function ToolbarView({
         <div className="toolbar-div">
             <h3 className="item-gapper">X-Text</h3>
 
-            {auth.isLoggedIn&&<Button className={`item-gapper ${editorColors.value}`}>Save</Button>}
-            {auth.isLoggedIn&&<Button className={`item-gapper ${editorColors.value}`}>Load</Button>}
+            {auth.isLoggedIn&&<Button 
+                className={`item-gapper ${editorColors.value}`}
+                onClick={(e)=>SaveFile(e, editorContent, title)}
+            >Save</Button>}
+            {auth.isLoggedIn&&<Button 
+                className={`item-gapper ${editorColors.value}`}
+                
+            >Load</Button>}
 
             {!auth.isLoggedIn&&<Button 
                 className={`item-gapper ${editorColors.value}`}

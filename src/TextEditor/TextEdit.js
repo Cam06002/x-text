@@ -2,10 +2,17 @@ import React, { useState, useCallback, useMemo } from 'react';
 import { Slate, Editable, withReact, useSlate } from 'slate-react';
 import {createEditor, Editor} from 'slate';
 import { FaBold, FaItalic, FaUnderline } from "react-icons/fa";
-import { Button } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 
-export default function TextEdit({editorColors}) {
+export default function TextEdit({
+  editorColors,
+  editorContent,
+  setEditorContent,
+  title,
+  setTitle
+}) {
   const [editor] = useState(()=> withReact(createEditor()));
+
   const initialValue = useMemo(
     () =>
       JSON.parse(localStorage.getItem('content')) || [
@@ -30,6 +37,7 @@ export default function TextEdit({editorColors}) {
   
   return (
     <>
+      <Form.Control type='text'placeholder='title' value={title} onChange={(e)=>setTitle(e.target.value)}/>
       <Slate 
         editor={editor} 
         initialValue={initialValue} 
@@ -40,6 +48,7 @@ export default function TextEdit({editorColors}) {
           if (isAstChange) {
             // Save the value to Local Storage.
             const content = JSON.stringify(value)
+            setEditorContent(content);
             localStorage.setItem('content', content)
           }
         }}>
