@@ -1,6 +1,5 @@
 export default async function CallApi(apiParams) {
     const abortController = new AbortController();
-    
     let responseData;
 
     try{

@@ -3,6 +3,7 @@ import { Slate, Editable, withReact, useSlate } from 'slate-react';
 import {createEditor, Editor} from 'slate';
 import { FaBold, FaItalic, FaUnderline } from "react-icons/fa";
 import { Button, Form } from 'react-bootstrap';
+//import { AuthContext } from '../Auth/authContext';
 
 export default function TextEdit({
   editorColors,
@@ -12,15 +13,17 @@ export default function TextEdit({
   setTitle
 }) {
   const [editor] = useState(()=> withReact(createEditor()));
+  //const auth = useContext(AuthContext);
 
   const initialValue = useMemo(
     () =>
-      JSON.parse(localStorage.getItem('content')) || [
+      JSON.parse(editorContent ? editorContent : localStorage.getItem('content')) || [
         {
           type: 'paragraph',
           children: [{ text: 'A line of text in a paragraph.' }],
         },
       ],
+      // eslint-disable-next-line
     []
   );
 
@@ -37,7 +40,7 @@ export default function TextEdit({
   
   return (
     <>
-      <Form.Control type='text'placeholder='title' value={title} onChange={(e)=>setTitle(e.target.value)}/>
+      
       <Slate 
         editor={editor} 
         initialValue={initialValue} 
@@ -48,14 +51,17 @@ export default function TextEdit({
           if (isAstChange) {
             // Save the value to Local Storage.
             const content = JSON.stringify(value)
-            setEditorContent(content);
+            setEditorContent(value);
             localStorage.setItem('content', content)
           }
         }}>
-      <div>
+      <div className='toolbar-div left-justify-override'>
         <MarkButton format="bold" icon={<FaBold/>} editorColors={editorColors}/>
         <MarkButton format="italic" icon={<FaItalic />} editorColors={editorColors}/>
         <MarkButton format="underline" icon={<FaUnderline />} editorColors={editorColors}/>
+        <div className='horizontal-margins'>
+          <Form.Control size='lg' type='text'placeholder='title' value={title} onChange={(e)=>setTitle(e.target.value)}/>
+        </div>
       </div>
       <Editable
         renderElement={renderElement}

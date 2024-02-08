@@ -1,4 +1,8 @@
 export default function SaveFile(event, editorContent, title){
     event.preventDefault();
-    console.log(editorContent, title);
+    let fileJson = JSON.stringify({
+        title: title,
+        editorContent: editorContent
+    })
+    console.log(fileJson);
 }

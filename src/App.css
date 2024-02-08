@@ -43,6 +43,11 @@ body {
   justify-content: center;
 }
 
+.left-justify-override {
+  justify-items: flex-start !important;
+  justify-content: flex-start !important;
+}
+
 .item-gapper {
   margin-left: 10px;
   margin-right: 10px;
@@ -84,4 +89,8 @@ body {
 
 .vertical-margins {
   margin: 1rem 0rem 1rem 0rem !important;
+}
+
+.horizontal-margins {
+  margin: 0rem .5rem 0rem .5rem !important;
 }
