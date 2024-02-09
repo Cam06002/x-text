@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import { Slate, Editable, withReact, useSlate } from 'slate-react';
 import {createEditor, Editor} from 'slate';
 import { FaBold, FaItalic, FaUnderline } from "react-icons/fa";
@@ -26,6 +26,10 @@ export default function TextEdit({
       // eslint-disable-next-line
     []
   );
+
+  useEffect(()=>{
+    localStorage.setItem('title', title);
+  },[title]);
 
   const renderElement = useCallback(props => {
     switch (props.element.type) {
