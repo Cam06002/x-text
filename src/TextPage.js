@@ -8,6 +8,7 @@ export default function TextPage(){
     const [editorColors, setEditorColors] = useState({value: 'black-text-box', label: 'black'});
     const [editorContent, setEditorContent] = useState(false);
     const [title, setTitle] = useState('');
+    
     const onColorChange = (e) =>{
         setEditorColors(e);
         console.log(e);

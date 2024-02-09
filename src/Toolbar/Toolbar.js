@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../Auth/authContext";
 import ToolbarView from "./ToolbarView";
 
 export default function Toolbar({
@@ -17,6 +18,9 @@ export default function Toolbar({
     ];
 
     const [authType, setAuthType] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState();
+    const auth = useContext(AuthContext);
 
     const HandleOpenLogin = () => {
         setAuthType('login');
@@ -28,6 +32,14 @@ export default function Toolbar({
 
     const HandleCloseAuth = () => {
         setAuthType(false);
+    }
+
+    const apiAddedParams = {
+        isLoading: isLoading,
+        setIsLoading: setIsLoading,
+        error: error,
+        setError: setError,
+        auth: auth
     }
 
     return(
@@ -46,6 +58,8 @@ export default function Toolbar({
             setEditorContent={setEditorContent}
             title={title}
             setTitle={setTitle}
+
+            apiAddedParams={apiAddedParams}
         />
         </>
     )

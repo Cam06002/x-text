@@ -17,8 +17,8 @@ export default async function CallApi(apiParams) {
         }
         console.log(responseData);
         apiParams.setIsLoading(false);
-        apiParams.auth.login();
-        apiParams.HandleCloseAuth();
+        apiParams.auth&&apiParams.auth.login(responseData.user.id);
+        apiParams.auth&&apiParams.HandleCloseAuth();
     } catch (err) {
         console.log(err);
         apiParams.setIsLoading(false);

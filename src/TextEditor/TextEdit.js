@@ -40,7 +40,6 @@ export default function TextEdit({
   
   return (
     <>
-      
       <Slate 
         editor={editor} 
         initialValue={initialValue} 

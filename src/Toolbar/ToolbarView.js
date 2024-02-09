@@ -18,7 +18,9 @@ export default function ToolbarView({
     editorContent,
     setEditorContent,
     title,
-    setTitle
+    setTitle,
+
+    apiAddedParams
 }){
     const auth = useContext(AuthContext);
 
@@ -35,6 +37,7 @@ export default function ToolbarView({
             <AuthLogic 
                 authType={authType}
                 HandleCloseAuth={HandleCloseAuth}
+                apiAddedParams={apiAddedParams}
             />
         </div>}
         <div className="toolbar-div">
@@ -42,7 +45,7 @@ export default function ToolbarView({
 
             {auth.isLoggedIn&&<Button 
                 className={`item-gapper ${editorColors.value}`}
-                onClick={(e)=>SaveFile(e, editorContent, title)}
+                onClick={(e)=>SaveFile(e, editorContent, title, apiAddedParams)}
             >Save</Button>}
             {auth.isLoggedIn&&<Button 
                 className={`item-gapper ${editorColors.value}`}

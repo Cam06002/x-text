@@ -6,12 +6,11 @@ import AuthView from "./authView";
 export default function AuthLogic({
     authType,
     HandleCloseAuth,
+    apiAddedParams
 }){
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState();
 
     const auth = useContext(AuthContext);
 
@@ -19,16 +18,16 @@ export default function AuthLogic({
         url: 'http://localhost:5000/api/auth/login',
         callType: 'POST',
         bodyData: JSON.stringify({email: email,password: password}),
-        setIsLoading: setIsLoading,
-        setError: setError,
+        setIsLoading: apiAddedParams.setIsLoading,
+        setError: apiAddedParams.setError,
         HandleCloseAuth: HandleCloseAuth,
         auth: auth
     } : authType === 'registration' ? {
         url: 'http://localhost:5000/api/auth/register',
         callType: 'POST',
         bodyData: JSON.stringify({name: name, email: email,password: password}),
-        setIsLoading: setIsLoading,
-        setError: setError,
+        setIsLoading: apiAddedParams.setIsLoading,
+        setError: apiAddedParams.setError,
         HandleCloseAuth: HandleCloseAuth,
         auth: auth
     } : null;
@@ -47,8 +46,8 @@ export default function AuthLogic({
             password={password}
             setPassword={setPassword}
             
-            isLoading={isLoading}
-            error={error}
+            isLoading={apiAddedParams.isLoading}
+            error={apiAddedParams.error}
         />
         </>
     );
