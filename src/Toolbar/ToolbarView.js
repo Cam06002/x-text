@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 import Select from "react-select";
 import { AuthContext } from "../Auth/authContext";
 import SaveFile from "../FileHandling/saveFile";
+import AddNewFile from "../FileHandling/AddNewFile";
 import AuthLogic from "../Auth/authLogic";
 
 export default function ToolbarView({
@@ -42,6 +43,11 @@ export default function ToolbarView({
         </div>}
         <div className="toolbar-div">
             <h3 className="item-gapper">X-Text</h3>
+
+            <Button 
+                className={`item-gapper ${editorColors.value}`}
+                onClick={(e)=>AddNewFile(e, setEditorContent, title, apiAddedParams)}
+            >New</Button>
 
             {auth.isLoggedIn&&<Button 
                 className={`item-gapper ${editorColors.value}`}
