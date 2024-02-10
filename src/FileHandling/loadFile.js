@@ -1,11 +1,13 @@
-import { useContext } from "react";
-import { AuthContext } from "../Auth/authContext";
+import CallApi from "../CallApi";
 
-export default function LoadFile(setEditorContent, setTitle){
-    const auth = useContext(AuthContext);
+export default function LoadFile(event, setEditorContent, setTitle, apiAddedParams){
 
     return (
         <>
         </>
     )
+}
+
+function GetLoadParams(){
+
 }

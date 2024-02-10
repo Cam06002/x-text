@@ -94,3 +94,8 @@ body {
 .horizontal-margins {
   margin: 0rem .5rem 0rem .5rem !important;
 }
+
+.editor-card {
+  display: flex;
+  padding: .5rem;
+}

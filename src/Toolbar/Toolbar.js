@@ -20,6 +20,8 @@ export default function Toolbar({
     const [authType, setAuthType] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState();
+    const [openLoaderPage, setOpenLoaderPage] = useState(false);
+
     const auth = useContext(AuthContext);
 
     const HandleOpenLogin = () => {
@@ -60,6 +62,9 @@ export default function Toolbar({
             setTitle={setTitle}
 
             apiAddedParams={apiAddedParams}
+
+            openLoaderPage={openLoaderPage}
+            setOpenLoaderPage={setOpenLoaderPage}
         />
         </>
     )
