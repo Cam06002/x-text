@@ -9,8 +9,11 @@ export default function LoadedEditorsCards({
     setTitle
 }){
     let editorCards = loadedEditors.userFiles.map(editor => {
+        console.log(editor.id);
         return(
-            <Button>
+            <Button
+                onClick={(e)=>LoadFile(e, setEditorContent, setTitle, apiAddedParams, editor.id)}
+            >
                 <div className="editor-card center-all">
                     {editor.title}
                 </div>

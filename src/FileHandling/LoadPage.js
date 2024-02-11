@@ -33,6 +33,7 @@ export default function LoadPage({
             }
         }
         fetchEditors();
+        // eslint-disable-next-line
     },[]);
 
     const HandleCloseLoader = () => {
