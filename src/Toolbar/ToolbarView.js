@@ -60,6 +60,7 @@ export default function ToolbarView({
                 apiAddedParams={apiAddedParams}
                 setEditorContent={setEditorContent}
                 setTitle={setTitle}
+                editorColors={editorColors}
             />
         </div>}
         <div className="toolbar-div">

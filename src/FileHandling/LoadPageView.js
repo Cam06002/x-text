@@ -8,7 +8,8 @@ export default function LoadPageView({
     apiAddedParams,
     loadedEditors,
     setEditorContent,
-    setTitle
+    setTitle,
+    editorColors
 }){
     return (
         <Modal dialogClassName='modal-style' show={openLoaderPage} onHide={HandleCloseLoader}>
@@ -21,6 +22,7 @@ export default function LoadPageView({
                     loadedEditors={loadedEditors}
                     setEditorContent={setEditorContent}
                     setTitle={setTitle}
+                    editorColors={editorColors}
                 />}
                 {!loadedEditors&&<h3>No Files Found</h3>}
             </Modal.Body>

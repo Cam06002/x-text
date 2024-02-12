@@ -8,7 +8,8 @@ export default function LoadPage({
     setOpenLoaderPage,
     apiAddedParams,
     setEditorContent,
-    setTitle
+    setTitle,
+    editorColors
 }){
     const auth = useContext(AuthContext);
     const uid = auth.userId;
@@ -48,6 +49,7 @@ export default function LoadPage({
             loadedEditors={loadedEditors}
             setEditorContent={setEditorContent}
             setTitle={setTitle}
+            editorColors={editorColors}
         />
     )
 }
