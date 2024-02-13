@@ -16,11 +16,11 @@ export default function TextEdit({
   const [initialValue, setInitialValue] = useState(getInitialValue(editorContent));
 
   const slateVars = {
-    initialValue,
-    editorColors,
-    setEditorContent,
-    title,
-    setTitle
+    initialValue: initialValue,
+    editorColors: editorColors,
+    setEditorContent: setEditorContent,
+    title: title,
+    setTitle: setTitle
   };
 
   const [slateEditor, setSlateEditor] = useState(SlateEditorModule(slateVars));
@@ -34,10 +34,10 @@ export default function TextEdit({
     console.log(newInitialValue);
     let newSlateVars = {
       initialValue: newInitialValue,
-      editorColors,
-      setEditorContent,
-      title,
-      setTitle
+      editorColors: editorColors,
+      setEditorContent: setEditorContent,
+      title: title,
+      setTitle: setTitle
     };
     setUpdateSlate(SlateEditorModule(newSlateVars));
     setSlateEditor();
@@ -46,6 +46,7 @@ export default function TextEdit({
 
   useEffect(()=>{
     setSlateEditor(updateSlate);
+    // eslint-disable-next-line
   },[updateSlate]);
 
   useEffect(()=>{
@@ -96,7 +97,7 @@ const SlateEditor = ({
         <MarkButton format="italic" icon={<FaItalic />} editorColors={editorColors}/>
         <MarkButton format="underline" icon={<FaUnderline />} editorColors={editorColors}/>
         <div className='horizontal-margins'>
-          <Form.Control size='lg' type='text'placeholder='title' value={title} onChange={(e)=>setTitle(e.target.value)}/>
+          <Form.Control size='lg' type='text' defaultValue={title} onChange={(e)=>setTitle(e.target.value)}/>
         </div>
       </div>
       <Editable

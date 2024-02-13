@@ -6,7 +6,8 @@ import { AuthContext } from "../Auth/authContext";
 export default function LoadPage({
     openLoaderPage,
     setOpenLoaderPage,
-    newParams
+    newParams,
+    setEditorId
 }){
     const auth = useContext(AuthContext);
     const uid = auth.userId;
@@ -44,6 +45,7 @@ export default function LoadPage({
             HandleCloseLoader={HandleCloseLoader}
             newParams={newParams}
             loadedEditors={loadedEditors}
+            setEditorId={setEditorId}
         />
     )
 }

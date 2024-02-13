@@ -1,30 +1,39 @@
 import CallApi from "../CallApi";
 
-export default async function SaveFile(event, editorContent, title, apiAddedParams){
-    let apiParams = GetSaveParams(event, editorContent, title, apiAddedParams);
-    let res = await CallApi(apiParams);
+export default async function SaveFile(event, newParams, editorId, setEditorId){
+    let apiParams = GetSaveParams(event, newParams, editorId);
+    let res = await CallApi(apiParams, setEditorId);
     console.log(res);
     return res;
 }
 
-function GetSaveParams(event, editorContent, title, apiAddedParams){
+function GetSaveParams(event, newParams, editorId){
 
     event.preventDefault();
     let bodyData = JSON.stringify({
-        title: title,
-        creator: apiAddedParams.auth.userId,
-        editorValue: editorContent
+        title: newParams.title,
+        creator: newParams.apiAddedParams.auth.userId,
+        editorValue: newParams.editorContent
     });
 
-    console.log(apiAddedParams.auth.userId);
+    let apiParams;
 
-    const apiParams = {
-        url: 'http://localhost:5000/api/files',
-        callType: 'POST',
-        bodyData: bodyData,
-        setIsLoading: apiAddedParams.setIsLoading,
-        setError: apiAddedParams.setError,
+    if(editorId){
+        apiParams = {
+            url: `http://localhost:5000/api/files/${editorId}`,
+            callType: 'PATCH',
+            bodyData: bodyData,
+            setIsLoading: newParams.apiAddedParams.setIsLoading,
+            setError: newParams.apiAddedParams.setError
+        }
+    } else {
+        apiParams = {
+            url: 'http://localhost:5000/api/files',
+            callType: 'POST',
+            bodyData: bodyData,
+            setIsLoading: newParams.apiAddedParams.setIsLoading,
+            setError: newParams.apiAddedParams.setError
+        }
     }
-
     return apiParams;
 }

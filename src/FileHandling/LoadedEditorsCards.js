@@ -5,17 +5,17 @@ import LoadFile from "./loadFile";
 export default function LoadedEditorsCards({
     newParams,
     loadedEditors,
-    HandleCloseLoader
+    HandleCloseLoader,
+    setEditorId
 }){
     let editorCards = loadedEditors.userFiles.map(editor => {
         console.log(editor.id);
         return(
             <Button
-                onClick={(e)=> (
-                    LoadFile(e, newParams, editor.id), 
-                    HandleCloseLoader()
-                    )
-                }>
+                onClick={(e)=> {
+                    LoadFile(e, newParams, editor.id, setEditorId); 
+                    HandleCloseLoader();
+                }}>
                 <div className="editor-card center-all">
                     {editor.title}
                 </div>

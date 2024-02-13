@@ -1,4 +1,4 @@
-export default async function CallApi(apiParams) {
+export default async function CallApi(apiParams, setEditorId) {
     const abortController = new AbortController();
     let responseData;
 
@@ -16,6 +16,10 @@ export default async function CallApi(apiParams) {
             throw new Error(responseData.message)
         }
         console.log(responseData);
+        if(apiParams.callType==='POST'&&apiParams.url==='http://localhost:5000/api/files'){
+            setEditorId(responseData.editor.id);
+        }
+        
         apiParams.setIsLoading(false);
         apiParams.auth&&apiParams.auth.login(responseData.user.id);
         apiParams.auth&&apiParams.HandleCloseAuth();

@@ -19,7 +19,9 @@ export default function ToolbarView({
     HandleLogout,
 
     openLoaderPage,
-    setOpenLoaderPage
+    setOpenLoaderPage,
+    editorId,
+    setEditorId
 }){
     const auth = useContext(AuthContext);
 
@@ -44,6 +46,7 @@ export default function ToolbarView({
                 openLoaderPage={openLoaderPage}
                 setOpenLoaderPage={setOpenLoaderPage}
                 newParams={newParams}
+                setEditorId={setEditorId}
             />
         </div>}
         <div className="toolbar-div">
@@ -56,7 +59,7 @@ export default function ToolbarView({
 
             {auth.isLoggedIn&&<Button 
                 className={`item-gapper ${newParams.editorColors.value}`}
-                onClick={(e)=>SaveFile(e, newParams.editorContent, newParams.title, newParams.apiAddedParams)}
+                onClick={(e)=>SaveFile(e, newParams, editorId, setEditorId)}
             >Save</Button>}
             {auth.isLoggedIn&&<Button 
                 className={`item-gapper ${newParams.editorColors.value}`}

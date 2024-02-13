@@ -24,6 +24,7 @@ export default function Toolbar({
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState();
     const [openLoaderPage, setOpenLoaderPage] = useState(false);
+    const [editorId, setEditorId] = useState();
 
     const auth = useContext(AuthContext);
 
@@ -76,9 +77,10 @@ export default function Toolbar({
             HandleOpenRegistration={HandleOpenRegistration}
             HandleLogout={HandleLogout}
 
-
             openLoaderPage={openLoaderPage}
             setOpenLoaderPage={setOpenLoaderPage}
+            editorId={editorId}
+            setEditorId={setEditorId}
         />
         </>
     )
