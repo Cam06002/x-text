@@ -2,18 +2,19 @@ import CallApi from "../CallApi";
 import TextEdit from "../TextEditor/TextEdit";
 
 export default async function AddNewFile(event, newParams){
-    let newEditorContent = JSON.stringify([{
+    let newEditorContent = [{
         type: 'paragraph',
-        children: [{ text: 'A line of text in a paragraph.' }],
-    }]);
+        children: [{ text: 'Delete me to start your new file.' }],
+    }];
 
     let newTitle = "New File"
 
     console.log(newEditorContent);
 
-    localStorage.setItem('content', newEditorContent);
     newParams.setEditorContent(newEditorContent);
     newParams.setTitle(newTitle);
+    let newEditorCount = newParams.editorChange + 1;
+    newParams.setEditorChange(newEditorCount);
 
     if(newParams.apiAddedParams.auth.isLoggedIn){
         let apiParams = GetSaveParams(event, newEditorContent, newTitle, newParams.apiAddedParams);
@@ -21,15 +22,14 @@ export default async function AddNewFile(event, newParams){
         console.log(res);
     }
 
-    window.location.reload();
-
     return(
         <TextEdit
             editorColors={newParams.editorColors}
             editorContent={newEditorContent}
             setEditorContent={newParams.setEditorContent}
-            title={newParams.title}
+            title={newTitle}
             setTitle={newParams.setTitle}
+            editorChange={newEditorCount}
         />
     )
 }

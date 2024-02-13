@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../Auth/authContext";
 import ToolbarView from "./ToolbarView";
+import AddNewFile from "../FileHandling/AddNewFile";
 
 export default function Toolbar({
     editorColors,
@@ -8,7 +9,9 @@ export default function Toolbar({
     editorContent,
     setEditorContent,
     title,
-    setTitle
+    setTitle,
+    editorChange,
+    setEditorChange
 }){
     const colorOptions = [
         {value: 'blue-text-box', label: 'blue'},
@@ -24,6 +27,25 @@ export default function Toolbar({
 
     const auth = useContext(AuthContext);
 
+    const apiAddedParams = {
+        isLoading: isLoading,
+        setIsLoading: setIsLoading,
+        error: error,
+        setError: setError,
+        auth: auth
+    }
+
+    const newParams = {
+        editorColors: editorColors,
+        editorContent: editorContent,
+        setEditorContent: setEditorContent,
+        title: title,
+        setTitle: setTitle,
+        apiAddedParams: apiAddedParams,
+        editorChange: editorChange,
+        setEditorChange: setEditorChange
+    };
+
     const HandleOpenLogin = () => {
         setAuthType('login');
     };
@@ -36,32 +58,24 @@ export default function Toolbar({
         setAuthType(false);
     }
 
-    const apiAddedParams = {
-        isLoading: isLoading,
-        setIsLoading: setIsLoading,
-        error: error,
-        setError: setError,
-        auth: auth
+    const HandleLogout = (e, newParams) => {
+        auth.logout();
+        AddNewFile(e, newParams);
     }
 
     return(
         <>
         <ToolbarView 
             colorOptions={colorOptions}
-            editorColors={editorColors}
             onColorChange={onColorChange}
+            newParams={newParams}
 
             authType={authType}
             HandleCloseAuth={HandleCloseAuth}
             HandleOpenLogin={HandleOpenLogin}
             HandleOpenRegistration={HandleOpenRegistration}
+            HandleLogout={HandleLogout}
 
-            editorContent={editorContent}
-            setEditorContent={setEditorContent}
-            title={title}
-            setTitle={setTitle}
-
-            apiAddedParams={apiAddedParams}
 
             openLoaderPage={openLoaderPage}
             setOpenLoaderPage={setOpenLoaderPage}

@@ -9,20 +9,15 @@ import LoadPage from "../FileHandling/LoadPage";
 
 export default function ToolbarView({
     colorOptions,
-    editorColors,
     onColorChange,
+    newParams,
 
     authType,
     HandleCloseAuth,
     HandleOpenLogin,
     HandleOpenRegistration,
+    HandleLogout,
 
-    editorContent,
-    setEditorContent,
-    title,
-    setTitle,
-
-    apiAddedParams,
     openLoaderPage,
     setOpenLoaderPage
 }){
@@ -31,17 +26,8 @@ export default function ToolbarView({
     const customSelectStyles = {
         control: base => ({
             ...base,
-            background: editorColors.label
+            background: newParams.editorColors.label
         }),
-    };
-
-    const newParams = {
-        editorColors: editorColors,
-        editorContent: editorContent,
-        setEditorContent: setEditorContent,
-        title: title,
-        setTitle: setTitle,
-        apiAddedParams: apiAddedParams,
     };
 
     return(
@@ -50,49 +36,50 @@ export default function ToolbarView({
             <AuthLogic 
                 authType={authType}
                 HandleCloseAuth={HandleCloseAuth}
-                apiAddedParams={apiAddedParams}
+                apiAddedParams={newParams.apiAddedParams}
             />
         </div>}
         {openLoaderPage&&<div className="center-all">
             <LoadPage 
                 openLoaderPage={openLoaderPage}
                 setOpenLoaderPage={setOpenLoaderPage}
-                apiAddedParams={apiAddedParams}
-                setEditorContent={setEditorContent}
-                setTitle={setTitle}
-                editorColors={editorColors}
+                newParams={newParams}
             />
         </div>}
         <div className="toolbar-div">
             <h3 className="item-gapper">X-Text</h3>
 
             <Button 
-                className={`item-gapper ${editorColors.value}`}
+                className={`item-gapper ${newParams.editorColors.value}`}
                 onClick={(e)=>AddNewFile(e, newParams)}
             >New</Button>
 
             {auth.isLoggedIn&&<Button 
-                className={`item-gapper ${editorColors.value}`}
-                onClick={(e)=>SaveFile(e, editorContent, title, apiAddedParams)}
+                className={`item-gapper ${newParams.editorColors.value}`}
+                onClick={(e)=>SaveFile(e, newParams.editorContent, newParams.title, newParams.apiAddedParams)}
             >Save</Button>}
             {auth.isLoggedIn&&<Button 
-                className={`item-gapper ${editorColors.value}`}
+                className={`item-gapper ${newParams.editorColors.value}`}
                 onClick={()=>setOpenLoaderPage(true)}
             >Load</Button>}
+            {auth.isLoggedIn&&<Button 
+                className={`item-gapper ${newParams.editorColors.value}`}
+                onClick={(e)=>HandleLogout(e, newParams)}
+            >Logout</Button>}
 
             {!auth.isLoggedIn&&<Button 
-                className={`item-gapper ${editorColors.value}`}
+                className={`item-gapper ${newParams.editorColors.value}`}
                 onClick={()=>HandleOpenLogin()}
             >Log In</Button>}
 
             {!auth.isLoggedIn&&<Button 
-                className={`item-gapper ${editorColors.value}`}
+                className={`item-gapper ${newParams.editorColors.value}`}
                 onClick={()=>HandleOpenRegistration()}
             >Register</Button>}
 
             <Select
                 options={colorOptions}
-                value={editorColors}
+                value={newParams.editorColors}
                 onChange={(e)=>{onColorChange(e)}}
                 styles={customSelectStyles}
             />

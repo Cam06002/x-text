@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { Slate, Editable, withReact, useSlate } from 'slate-react';
 import {createEditor, Editor} from 'slate';
 import { FaBold, FaItalic, FaUnderline } from "react-icons/fa";
@@ -10,27 +10,60 @@ export default function TextEdit({
   editorContent,
   setEditorContent,
   title,
-  setTitle
+  setTitle,
+  editorChange
 }) {
-  const [editor] = useState(()=> withReact(createEditor()));
-  //const auth = useContext(AuthContext);
+  const [initialValue, setInitialValue] = useState(getInitialValue(editorContent));
 
-  const initialValue = useMemo(
-    () =>
-      JSON.parse(editorContent ? editorContent : localStorage.getItem('content')) || [
-        {
-          type: 'paragraph',
-          children: [{ text: 'A line of text in a paragraph.' }],
-        },
-      ],
-      // eslint-disable-next-line
-    []
-  );
+  const slateVars = {
+    initialValue,
+    editorColors,
+    setEditorContent,
+    title,
+    setTitle
+  };
+
+  const [slateEditor, setSlateEditor] = useState(SlateEditorModule(slateVars));
+  const [updateSlate, setUpdateSlate] = useState();
+
+  
+  useEffect(()=>{
+    console.log(editorChange);
+    let newInitialValue = getInitialValue(editorContent);
+    setInitialValue(newInitialValue);
+    console.log(newInitialValue);
+    let newSlateVars = {
+      initialValue: newInitialValue,
+      editorColors,
+      setEditorContent,
+      title,
+      setTitle
+    };
+    setUpdateSlate(SlateEditorModule(newSlateVars));
+    setSlateEditor();
+    // eslint-disable-next-line
+  },[editorChange]);
+
+  useEffect(()=>{
+    setSlateEditor(updateSlate);
+  },[updateSlate]);
 
   useEffect(()=>{
     localStorage.setItem('title', title);
   },[title]);
 
+  return slateEditor;
+}
+
+const SlateEditor = ({
+  initialValue, 
+  editorColors,
+  setEditorContent,
+  title,
+  setTitle,
+}) => {
+
+  const [editor] = useState(()=> withReact(createEditor()));
   const renderElement = useCallback(props => {
     switch (props.element.type) {
       default:
@@ -41,7 +74,7 @@ export default function TextEdit({
   const renderLeaf = useCallback(props => {
     return <Leaf {...props} />
   }, [])
-  
+
   return (
     <>
       <Slate 
@@ -124,4 +157,28 @@ const toggleMark = (editor, format) => {
   } else {
     Editor.addMark(editor, format, true)
   }
+}
+
+const getInitialValue = (editorContent) => {
+  let initialValue = editorContent ? editorContent : 
+  localStorage.getItem('content') ?
+  JSON.parse(localStorage.getItem('content')) : [
+    {
+      type: 'paragraph',
+      children: [{ text: 'A line of text in a paragraph.' }],
+    },
+  ]
+  console.log(initialValue);
+
+  return initialValue;
+}
+
+const SlateEditorModule = (slateVars)=>{
+  return <SlateEditor
+    initialValue={slateVars.initialValue}
+    editorColors={slateVars.editorColors}
+    setEditorContent={slateVars.setEditorContent}
+    title={slateVars.title}
+    setTitle={slateVars.setTitle}
+  />
 }

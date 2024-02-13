@@ -6,10 +6,7 @@ import { AuthContext } from "../Auth/authContext";
 export default function LoadPage({
     openLoaderPage,
     setOpenLoaderPage,
-    apiAddedParams,
-    setEditorContent,
-    setTitle,
-    editorColors
+    newParams
 }){
     const auth = useContext(AuthContext);
     const uid = auth.userId;
@@ -19,8 +16,8 @@ export default function LoadPage({
         url: `http://localhost:5000/api/files/user/${uid}`,
         callType: 'GET',
         bodyData: null,
-        setIsLoading: apiAddedParams.setIsLoading,
-        setError: apiAddedParams.setError
+        setIsLoading: newParams.apiAddedParams.setIsLoading,
+        setError: newParams.apiAddedParams.setError
     };
 
     useEffect(()=>{
@@ -45,11 +42,8 @@ export default function LoadPage({
         <LoadPageView
             openLoaderPage={openLoaderPage}
             HandleCloseLoader={HandleCloseLoader}
-            apiAddedParams={apiAddedParams}
+            newParams={newParams}
             loadedEditors={loadedEditors}
-            setEditorContent={setEditorContent}
-            setTitle={setTitle}
-            editorColors={editorColors}
         />
     )
 }

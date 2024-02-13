@@ -5,11 +5,8 @@ import LoadedEditorsCards from "./LoadedEditorsCards";
 export default function LoadPageView({
     openLoaderPage,
     HandleCloseLoader,
-    apiAddedParams,
-    loadedEditors,
-    setEditorContent,
-    setTitle,
-    editorColors
+    newParams,
+    loadedEditors
 }){
     return (
         <Modal dialogClassName='modal-style' show={openLoaderPage} onHide={HandleCloseLoader}>
@@ -18,11 +15,9 @@ export default function LoadPageView({
             </Modal.Header>
             <Modal.Body>
                 {loadedEditors&&<LoadedEditorsCards 
-                    apiAddedParams={apiAddedParams}
+                    newParams={newParams}
                     loadedEditors={loadedEditors}
-                    setEditorContent={setEditorContent}
-                    setTitle={setTitle}
-                    editorColors={editorColors}
+                    HandleCloseLoader={HandleCloseLoader}
                 />}
                 {!loadedEditors&&<h3>No Files Found</h3>}
             </Modal.Body>

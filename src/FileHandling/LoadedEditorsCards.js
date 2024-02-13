@@ -3,18 +3,19 @@ import { Button } from "react-bootstrap";
 import LoadFile from "./loadFile";
 
 export default function LoadedEditorsCards({
-    apiAddedParams,
+    newParams,
     loadedEditors,
-    setEditorContent,
-    setTitle,
-    editorColors
+    HandleCloseLoader
 }){
     let editorCards = loadedEditors.userFiles.map(editor => {
         console.log(editor.id);
         return(
             <Button
-                onClick={(e)=>LoadFile(e, setEditorContent, setTitle, apiAddedParams, editor.id, editorColors)}
-            >
+                onClick={(e)=> (
+                    LoadFile(e, newParams, editor.id), 
+                    HandleCloseLoader()
+                    )
+                }>
                 <div className="editor-card center-all">
                     {editor.title}
                 </div>

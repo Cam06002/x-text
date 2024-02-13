@@ -7,6 +7,8 @@ export default function TextPage(){
 
     const [editorColors, setEditorColors] = useState({value: 'black-text-box', label: 'black'});
     const [editorContent, setEditorContent] = useState(false);
+    const [editorChange, setEditorChange] = useState(0);
+
     const [title, setTitle] = useState(
         localStorage.getItem('title') ? localStorage.getItem('title') :
         'New File');
@@ -29,6 +31,8 @@ export default function TextPage(){
                     setEditorContent={setEditorContent}
                     title={title}
                     setTitle={setTitle}
+                    editorChange={editorChange}
+                    setEditorChange={setEditorChange}
                 />
             </div>
             <div className="box-sizer">
@@ -38,6 +42,7 @@ export default function TextPage(){
                     setEditorContent={setEditorContent}
                     title={title}
                     setTitle={setTitle}
+                    editorChange={editorChange}
                 />
             </div>
         </div>

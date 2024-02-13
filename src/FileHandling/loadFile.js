@@ -1,22 +1,24 @@
 import CallApi from "../CallApi";
 import TextEdit from "../TextEditor/TextEdit";
 
-export default async function LoadFile(event, setEditorContent, setTitle, apiAddedParams, editorId, editorColors){
-    let fileToLoad = await GetFile(event, apiAddedParams, editorId);
+export default async function LoadFile(event, newParams, editorId){
+    let fileToLoad = await GetFile(event, newParams.apiAddedParams, editorId);
     let loadedJournal = fileToLoad.journal.editorValue;
-    setEditorContent(loadedJournal);
+    console.log(loadedJournal);
+    newParams.setEditorContent(loadedJournal);
     let loadedTitle = fileToLoad.journal.title;
-    setTitle(loadedTitle);
-
-    window.location.reload();
+    newParams.setTitle(loadedTitle);
+    let newEditorCount = newParams.editorChange + 1;
+    newParams.setEditorChange(newEditorCount);
 
     return(
         <TextEdit
-            editorColors={editorColors}
+            editorColors={newParams.editorColors}
             editorContent={loadedJournal}
-            setEditorContent={setEditorContent}
+            setEditorContent={newParams.setEditorContent}
             title={loadedTitle}
-            setTitle={setTitle}
+            setTitle={newParams.setTitle}
+            editorChange={newEditorCount}
         />
     )
 
