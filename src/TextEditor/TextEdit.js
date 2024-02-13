@@ -1,9 +1,9 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useContext } from 'react';
 import { Slate, Editable, withReact, useSlate } from 'slate-react';
 import {createEditor, Editor} from 'slate';
 import { FaBold, FaItalic, FaUnderline } from "react-icons/fa";
 import { Button, Form } from 'react-bootstrap';
-//import { AuthContext } from '../Auth/authContext';
+import { AuthContext } from '../Auth/authContext';
 
 export default function TextEdit({
   editorColors,
@@ -26,6 +26,7 @@ export default function TextEdit({
   const [slateEditor, setSlateEditor] = useState(SlateEditorModule(slateVars));
   const [updateSlate, setUpdateSlate] = useState();
 
+  const auth = useContext(AuthContext);
   
   useEffect(()=>{
     console.log(editorChange);
@@ -50,8 +51,10 @@ export default function TextEdit({
   },[updateSlate]);
 
   useEffect(()=>{
-    localStorage.setItem('title', title);
-  },[title]);
+    if(!auth.isLoggedIn){
+      localStorage.setItem('title', title);
+    }
+  },[title, auth.isLoggedIn]);
 
   return slateEditor;
 }
