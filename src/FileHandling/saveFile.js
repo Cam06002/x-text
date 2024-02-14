@@ -8,8 +8,8 @@ export default async function SaveFile(event, newParams, editorId, setEditorId){
 }
 
 function GetSaveParams(event, newParams, editorId){
-
     event.preventDefault();
+    
     let bodyData = JSON.stringify({
         title: newParams.title,
         creator: newParams.apiAddedParams.auth.userId,

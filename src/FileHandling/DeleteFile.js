@@ -16,7 +16,11 @@ function GetDeleteParams(event, newParams, editorId){
         callType: 'DELETE',
         bodyData: null,
         setIsLoading: newParams.apiAddedParams.setIsLoading,
-        setError: newParams.apiAddedParams.setError
+        setError: newParams.apiAddedParams.setError,
+        headers: {
+            'Content-Type': 'application/json', 
+            'Authorization': `Bearer ${newParams.apiAddedParams.auth.token}`
+        }
     }
 
     return apiParams;

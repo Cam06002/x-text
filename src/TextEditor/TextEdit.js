@@ -29,10 +29,9 @@ export default function TextEdit({
   const auth = useContext(AuthContext);
   
   useEffect(()=>{
-    console.log(editorChange);
     let newInitialValue = getInitialValue(editorContent);
     setInitialValue(newInitialValue);
-    console.log(newInitialValue);
+
     let newSlateVars = {
       initialValue: newInitialValue,
       editorColors: editorColors,
@@ -40,6 +39,7 @@ export default function TextEdit({
       title: title,
       setTitle: setTitle
     };
+    
     setUpdateSlate(SlateEditorModule(newSlateVars));
     setSlateEditor();
     // eslint-disable-next-line
@@ -61,7 +61,6 @@ export default function TextEdit({
 
 const SlateEditor = ({
   initialValue, 
-  editorColors,
   setEditorContent,
   title,
   setTitle,
@@ -172,7 +171,6 @@ const getInitialValue = (editorContent) => {
       children: [{ text: 'A line of text in a paragraph.' }],
     },
   ]
-  console.log(initialValue);
 
   return initialValue;
 }
