@@ -21,7 +21,8 @@ export default function AuthLogic({
         setIsLoading: apiAddedParams.setIsLoading,
         setError: apiAddedParams.setError,
         HandleCloseAuth: HandleCloseAuth,
-        auth: auth
+        auth: auth,
+        headers: {'Content-Type': 'application/json'}
     } : authType === 'registration' ? {
         url: 'http://localhost:5000/api/auth/register',
         callType: 'POST',
@@ -29,7 +30,8 @@ export default function AuthLogic({
         setIsLoading: apiAddedParams.setIsLoading,
         setError: apiAddedParams.setError,
         HandleCloseAuth: HandleCloseAuth,
-        auth: auth
+        auth: auth,
+        headers: {'Content-Type': 'application/json'}
     } : null;
 
     return(

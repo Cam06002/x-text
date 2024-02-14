@@ -18,7 +18,11 @@ export default function LoadPage({
         callType: 'GET',
         bodyData: null,
         setIsLoading: newParams.apiAddedParams.setIsLoading,
-        setError: newParams.apiAddedParams.setError
+        setError: newParams.apiAddedParams.setError,
+        headers: {
+            'Content-Type': 'application/json', 
+            'Authorization': `Bearer ${newParams.apiAddedParams.auth.token}`
+        }
     };
 
     useEffect(()=>{

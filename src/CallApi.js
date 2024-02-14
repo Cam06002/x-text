@@ -7,7 +7,7 @@ export default async function CallApi(apiParams, setEditorId) {
         const response = await fetch(apiParams.url, {
             signal: abortController.signal,
             method: apiParams.callType,
-            headers: {'Content-Type': 'application/json'},
+            headers: apiParams.headers,
             body: apiParams.bodyData
         });
 
@@ -17,11 +17,11 @@ export default async function CallApi(apiParams, setEditorId) {
         }
         console.log(responseData);
         if(apiParams.callType==='POST'&&apiParams.url==='http://localhost:5000/api/files'){
-            setEditorId(responseData.editor.id);
+            setEditorId(responseData.file._id);
         }
         
         apiParams.setIsLoading(false);
-        apiParams.auth&&apiParams.auth.login(responseData.user.id);
+        apiParams.auth&&apiParams.auth.login(responseData.userId, responseData.token);
         apiParams.auth&&apiParams.HandleCloseAuth();
     } catch (err) {
         console.log(err);

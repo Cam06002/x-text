@@ -24,7 +24,11 @@ function GetSaveParams(event, newParams, editorId){
             callType: 'PATCH',
             bodyData: bodyData,
             setIsLoading: newParams.apiAddedParams.setIsLoading,
-            setError: newParams.apiAddedParams.setError
+            setError: newParams.apiAddedParams.setError,
+            headers: {
+                'Content-Type': 'application/json', 
+                'Authorization': `Bearer ${newParams.apiAddedParams.auth.token}`
+            }
         }
     } else {
         apiParams = {
@@ -32,7 +36,11 @@ function GetSaveParams(event, newParams, editorId){
             callType: 'POST',
             bodyData: bodyData,
             setIsLoading: newParams.apiAddedParams.setIsLoading,
-            setError: newParams.apiAddedParams.setError
+            setError: newParams.apiAddedParams.setError,
+            headers: {
+                'Content-Type': 'application/json', 
+                'Authorization': `Bearer ${newParams.apiAddedParams.auth.token}`
+            }
         }
     }
     return apiParams;

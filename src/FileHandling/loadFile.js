@@ -40,6 +40,10 @@ function GetLoadParams(event, apiAddedParams, editorId){
         bodyData: null,
         setIsLoading: apiAddedParams.setIsLoading,
         setError: apiAddedParams.setError,
+        headers: {
+            'Content-Type': 'application/json', 
+            'Authorization': `Bearer ${apiAddedParams.auth.token}`
+        }
     }
 
     return apiParams;
