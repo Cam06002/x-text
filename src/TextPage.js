@@ -5,7 +5,10 @@ import './App.css';
 
 export default function TextPage(){
 
-    const [editorColors, setEditorColors] = useState({value: 'black-text-box', label: 'black'});
+    const [editorColors, setEditorColors] = useState(
+        JSON.parse(localStorage.getItem('style')) ||
+        {value: 'black-text-box', label: 'black'}
+    );
     const [editorContent, setEditorContent] = useState(false);
     const [editorChange, setEditorChange] = useState(0);
 
@@ -15,6 +18,7 @@ export default function TextPage(){
     
     const onColorChange = (e) =>{
         setEditorColors(e);
+        localStorage.setItem('style', JSON.stringify(e));
         console.log(e);
     }
 
