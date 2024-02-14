@@ -17,7 +17,7 @@ export default async function CallApi(apiParams, setEditorId) {
         }
         console.log(responseData);
         if(apiParams.callType==='POST'&&apiParams.url==='http://localhost:5000/api/files'){
-            setEditorId(responseData.file._id);
+            setEditorId(responseData.editor.id);
         }
         
         apiParams.setIsLoading(false);
