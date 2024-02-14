@@ -77,7 +77,15 @@ const SlateEditor = ({
 
   const renderLeaf = useCallback(props => {
     return <Leaf {...props} />
-  }, [])
+  }, []);
+
+  const buttonFontStyle = {
+    color: editorColors.label === 'blue' ? 'white' :
+      editorColors.label === 'green' ? 'white' :
+      editorColors.label === 'black' ? 'greenyellow' : 'purple',
+    
+    backgroundColor: 'transparent'
+  }
 
   return (
     <>
@@ -96,9 +104,9 @@ const SlateEditor = ({
           }
         }}>
       <div className='toolbar-div left-justify-override'>
-        <MarkButton format="bold" icon={<FaBold/>} editorColors={editorColors}/>
-        <MarkButton format="italic" icon={<FaItalic />} editorColors={editorColors}/>
-        <MarkButton format="underline" icon={<FaUnderline />} editorColors={editorColors}/>
+        <MarkButton format="bold" icon={<FaBold/>} fontStlye={buttonFontStyle}/>
+        <MarkButton format="italic" icon={<FaItalic />} fontStlye={buttonFontStyle}/>
+        <MarkButton format="underline" icon={<FaUnderline />} fontStlye={buttonFontStyle}/>
         <div className='horizontal-margins'>
           <Form.Control size='lg' type='text' defaultValue={title} onChange={(e)=>setTitle(e.target.value)}/>
         </div>
@@ -132,12 +140,12 @@ const Leaf = ({ attributes, children, leaf }) => {
   return <span {...attributes}>{children}</span>
 }
 
-const MarkButton = ({ format, icon, editorColors }) => {
+const MarkButton = ({ format, icon, fontStlye }) => {
   const editor = useSlate()
   return (
     <Button
       active={isMarkActive(editor, format)}
-      className={`editor-button ${editorColors.value}`}
+      style={fontStlye}
       onMouseDown={event => {
         event.preventDefault()
         toggleMark(editor, format)

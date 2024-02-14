@@ -55,7 +55,9 @@ body {
 
 .editor-button {
   filter: grayscale(20%);
+  background-color: transparent !important;
   padding: 8px 5px 5px 5px;
+  color: white !important;
 }
 
 .editor-button:hover{

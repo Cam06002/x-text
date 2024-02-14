@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 import LoadedEditorsCards from "./LoadedEditorsCards";
 
 export default function LoadPageView({
@@ -21,8 +21,12 @@ export default function LoadPageView({
                     HandleCloseLoader={HandleCloseLoader}
                     setEditorId={setEditorId}
                 />}
-                {!loadedEditors&&<h3>No Files Found</h3>}
             </Modal.Body>
+            <Modal.Footer>
+                <Button
+                    onClick={()=>HandleCloseLoader()}
+                >Close</Button>
+            </Modal.Footer>
         </Modal>
     )
 }

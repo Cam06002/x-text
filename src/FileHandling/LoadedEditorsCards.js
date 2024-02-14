@@ -8,23 +8,27 @@ export default function LoadedEditorsCards({
     HandleCloseLoader,
     setEditorId
 }){
-    let editorCards = loadedEditors.userFiles.map(editor => {
-        console.log(editor.id);
+    if(loadedEditors.userFiles){
+        let editorCards = loadedEditors.userFiles.map(editor => {
+            console.log(editor.id);
+            return(
+                <Button
+                    onClick={(e)=> {
+                        LoadFile(e, newParams, editor.id, setEditorId); 
+                        HandleCloseLoader();
+                    }}>
+                    <div className="editor-card center-all">
+                        {editor.title}
+                    </div>
+                </Button>
+            )
+        })
         return(
-            <Button
-                onClick={(e)=> {
-                    LoadFile(e, newParams, editor.id, setEditorId); 
-                    HandleCloseLoader();
-                }}>
-                <div className="editor-card center-all">
-                    {editor.title}
-                </div>
-            </Button>
+            <div className="editor-card">
+                {editorCards}
+            </div>
         )
-    })
-    return(
-        <div className="editor-card">
-            {editorCards}
-        </div>
-    )
+    } else {
+        return <h3>No Saved Editors Found</h3>
+    }
 }

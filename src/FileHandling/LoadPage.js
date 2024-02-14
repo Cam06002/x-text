@@ -28,7 +28,7 @@ export default function LoadPage({
                 setLoadedEditors(files);
                 console.log(files);
             } catch (err) {
-
+                console.log(err);
             }
         }
         fetchEditors();

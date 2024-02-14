@@ -6,6 +6,7 @@ import SaveFile from "../FileHandling/saveFile";
 import AddNewFile from "../FileHandling/AddNewFile";
 import AuthLogic from "../Auth/authLogic";
 import LoadPage from "../FileHandling/LoadPage";
+import DeleteFile from "../FileHandling/DeleteFile";
 
 export default function ToolbarView({
     colorOptions,
@@ -26,10 +27,22 @@ export default function ToolbarView({
     const auth = useContext(AuthContext);
 
     const customSelectStyles = {
-        control: base => ({
+        control: (base, state) => ({
             ...base,
-            background: newParams.editorColors.label
+            backgroundColor: newParams.editorColors.label,
+            color: state.isSelected ? (newParams.editorColors.label === 'blue' 
+                || newParams.editorColors.label === 'black'
+                || newParams.editorColors.label === 'green') ? 'white' : 'black' : 'white'
         }),
+        option: (base) => {;
+            return {
+                ...base,
+                backgroundColor: newParams.editorColors.label,
+                color: (newParams.editorColors.label === 'blue' 
+                    || newParams.editorColors.label === 'black'
+                    || newParams.editorColors.label === 'green') ? 'white' : 'black'
+            }
+        }
     };
 
     return(
@@ -65,6 +78,10 @@ export default function ToolbarView({
                 className={`item-gapper ${newParams.editorColors.value}`}
                 onClick={()=>setOpenLoaderPage(true)}
             >Load</Button>}
+            {auth.isLoggedIn&&<Button 
+                className={`item-gapper ${newParams.editorColors.value}`}
+                onClick={(e)=>DeleteFile(e, newParams, editorId, setEditorId)}
+            >Delete</Button>}
             {auth.isLoggedIn&&<Button 
                 className={`item-gapper ${newParams.editorColors.value}`}
                 onClick={(e)=>HandleLogout(e, newParams)}
