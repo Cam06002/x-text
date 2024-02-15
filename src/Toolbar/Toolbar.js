@@ -57,11 +57,13 @@ export default function Toolbar({
 
     const HandleCloseAuth = () => {
         setAuthType(false);
+        setError();
     }
 
     const HandleLogout = (e, newParams) => {
         auth.logout();
         AddNewFile(e, newParams);
+        setError();
     }
 
     return(
