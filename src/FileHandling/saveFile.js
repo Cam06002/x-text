@@ -20,7 +20,7 @@ function GetSaveParams(event, newParams, editorId){
 
     if(editorId){
         apiParams = {
-            url: `http://localhost:5000/api/files/${editorId}`,
+            url: `${process.env.REACT_APP_API_URL}/files/${editorId}`,
             callType: 'PATCH',
             bodyData: bodyData,
             setIsLoading: newParams.apiAddedParams.setIsLoading,
@@ -32,7 +32,7 @@ function GetSaveParams(event, newParams, editorId){
         }
     } else {
         apiParams = {
-            url: 'http://localhost:5000/api/files',
+            url: `${process.env.REACT_APP_API_URL}/files`,
             callType: 'POST',
             bodyData: bodyData,
             setIsLoading: newParams.apiAddedParams.setIsLoading,

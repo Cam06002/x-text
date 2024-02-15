@@ -14,7 +14,7 @@ export default function LoadPage({
     const [loadedEditors, setLoadedEditors] = useState()
 
     const apiParams = {
-        url: `http://localhost:5000/api/files/user/${uid}`,
+        url: `${process.env.REACT_APP_API_URL}/files/user/${uid}`,
         callType: 'GET',
         bodyData: null,
         setIsLoading: newParams.apiAddedParams.setIsLoading,

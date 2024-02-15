@@ -15,7 +15,7 @@ export default function AuthLogic({
     const auth = useContext(AuthContext);
 
     const apiParams = authType === 'login' ? {
-        url: 'http://localhost:5000/api/auth/login',
+        url: `${process.env.REACT_APP_API_URL}/auth/login`,
         callType: 'POST',
         bodyData: JSON.stringify({email: email,password: password}),
         setIsLoading: apiAddedParams.setIsLoading,
@@ -24,7 +24,7 @@ export default function AuthLogic({
         auth: auth,
         headers: {'Content-Type': 'application/json'}
     } : authType === 'registration' ? {
-        url: 'http://localhost:5000/api/auth/register',
+        url: `${process.env.REACT_APP_API_URL}/auth/register`,
         callType: 'POST',
         bodyData: JSON.stringify({name: name, email: email,password: password}),
         setIsLoading: apiAddedParams.setIsLoading,

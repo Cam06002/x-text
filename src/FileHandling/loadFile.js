@@ -35,7 +35,7 @@ function GetLoadParams(event, apiAddedParams, editorId){
     event.preventDefault();
 
     const apiParams = {
-        url: `http://localhost:5000/api/files/${editorId}`,
+        url: `${process.env.REACT_APP_API_URL}/files/${editorId}`,
         callType: 'GET',
         bodyData: null,
         setIsLoading: apiAddedParams.setIsLoading,

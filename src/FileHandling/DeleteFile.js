@@ -12,7 +12,7 @@ function GetDeleteParams(event, newParams, editorId){
     event.preventDefault();
     
     let apiParams = {
-        url: `http://localhost:5000/api/files/${editorId}`,
+        url: `${process.env.REACT_APP_API_URL}/files/${editorId}`,
         callType: 'DELETE',
         bodyData: null,
         setIsLoading: newParams.apiAddedParams.setIsLoading,

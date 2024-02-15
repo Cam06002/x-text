@@ -16,7 +16,7 @@ export default async function CallApi(apiParams, setEditorId) {
             throw new Error(responseData.message)
         }
         
-        if(apiParams.callType==='POST'&&apiParams.url==='http://localhost:5000/api/files'){
+        if(apiParams.callType==='POST'&&apiParams.url===`${process.env.REACT_APP_API_URL}/files`){
             setEditorId(responseData.editor.id);
         }
         
