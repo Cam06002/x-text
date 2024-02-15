@@ -3,14 +3,18 @@ import TextPage from './TextPage';
 import { AuthContext } from './Auth/authContext';
 import './App.css';
 
+let logoutTimer;
+
 export default function App() {
   const [token, setToken] = useState(false);
+  const [expiration, setExpiration] = useState();
   const [userId, setUserId] = useState(false);
 
   const login = useCallback((uid, token, expirationTime)=>{
     setToken(token);
     setUserId(uid);
     const tokenExpirationTime = expirationTime || new Date(new Date().getTime() + 1000 * 60 * 60 * 4);
+    setExpiration(tokenExpirationTime);
     localStorage.setItem('userData', JSON.stringify({
       userId: uid, 
       token: token,
@@ -21,8 +25,18 @@ export default function App() {
   const logout = useCallback(()=>{
     setToken(null);
     setUserId(null);
+    setExpiration(null);
     localStorage.removeItem('userData');
   },[]);
+
+  useEffect(()=>{
+    if (token && expiration){
+      const remainingTime = expiration.getTime() - new Date().getTime();
+      logoutTimer = setTimeout(logout, remainingTime);
+    } else {
+      clearTimeout(logoutTimer);
+    }
+  },[token, logout, expiration])
 
   useEffect(()=>{
     const storedUser = JSON.parse(localStorage.getItem('userData'));
