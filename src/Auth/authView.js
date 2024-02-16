@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Form, Modal, Spinner, Alert } from 'react-bootstrap';
 import CallApi from "../CallApi";
+import { ReactDOM } from "react-dom";
 
 export default function AuthView({
     authType,
@@ -17,7 +18,7 @@ export default function AuthView({
     isLoading,
     error,
 }){
-    return(
+    const authPage =
         <Modal dialogClassName='modal-style' show={authType} onHide={HandleCloseAuth} animation={false}>
             <Modal.Header>
                 {authType === 'login' ? <h3>Login</h3> : <h3>Register</h3>}
@@ -44,6 +45,6 @@ export default function AuthView({
                 <Button onClick={()=>HandleCloseAuth()}>Close</Button>
             </Modal.Footer>
         </Modal>
-    )
-
+    
+    return ReactDOM.createPortal(authPage, document.getElementById("auth-modal"));
 }
