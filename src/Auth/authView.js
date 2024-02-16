@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Form, Modal, Spinner, Alert } from 'react-bootstrap';
 import CallApi from "../CallApi";
-import { ReactDOM } from "react-dom";
+import ReactDOM from "react-dom";
 
 export default function AuthView({
     authType,
