@@ -18,7 +18,7 @@ export default function AuthView({
     error,
 }){
     return(
-        <Modal dialogClassName='modal-style' show={authType} onHide={HandleCloseAuth}>
+        <Modal dialogClassName='modal-style' show={authType} onHide={HandleCloseAuth} animation={false}>
             <Modal.Header>
                 {authType === 'login' ? <h3>Login</h3> : <h3>Register</h3>}
             </Modal.Header>
