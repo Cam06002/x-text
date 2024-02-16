@@ -19,7 +19,7 @@ export default function AuthView({
     error,
 }){
     const authPage =
-        <Modal dialogClassName='modal-style' show={authType} onHide={HandleCloseAuth}>
+        <Modal dialogClassName='modal-style' show={authType} onHide={HandleCloseAuth} fullscreen={true}>
             <Modal.Header>
                 {authType === 'login' ? <h3>Login</h3> : <h3>Register</h3>}
             </Modal.Header>
