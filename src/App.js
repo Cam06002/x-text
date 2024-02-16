@@ -1,7 +1,6 @@
 import React, {useState, useCallback, useEffect} from 'react';
 import TextPage from './TextPage';
 import { AuthContext } from './Auth/authContext';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 let logoutTimer;
