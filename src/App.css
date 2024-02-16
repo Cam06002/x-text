@@ -81,6 +81,7 @@ body {
   align-self: center !important;
   background-color: white;
   opacity: 1;
+  z-index: 999 !important;
 }
 
 .center-all{
