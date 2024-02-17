@@ -64,8 +64,6 @@ export default function ToolbarView({
         </div>}
         {(!authType&&!openLoaderPage)&&
         <div className="toolbar-div">
-            <h3 className="item-gapper">X-Text</h3>
-
             <Button 
                 className={`item-gapper ${newParams.editorColors.value}`}
                 onClick={(e)=>AddNewFile(e, newParams)}
