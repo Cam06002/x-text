@@ -62,7 +62,7 @@ export default function ToolbarView({
                 setEditorId={setEditorId}
             />
         </div>}
-        {!authType&&
+        {(!authType&&!openLoaderPage)&&
         <div className="toolbar-div">
             <h3 className="item-gapper">X-Text</h3>
 
