@@ -62,6 +62,7 @@ export default function ToolbarView({
                 setEditorId={setEditorId}
             />
         </div>}
+        {!authType&&
         <div className="toolbar-div">
             <h3 className="item-gapper">X-Text</h3>
 
@@ -103,7 +104,7 @@ export default function ToolbarView({
                 onChange={(e)=>{onColorChange(e)}}
                 styles={customSelectStyles}
             />
-        </div>
+        </div>}
         </>
     )
 }

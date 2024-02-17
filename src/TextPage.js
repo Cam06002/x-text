@@ -39,6 +39,7 @@ export default function TextPage(){
                     setEditorChange={setEditorChange}
                 />
             </div>
+            
             <div className="box-sizer">
                 <TextEdit 
                     editorColors={editorColors}
