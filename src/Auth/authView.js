@@ -24,7 +24,7 @@ export default function AuthView({
 
     return (
         <div>
-            {isLoading ? <Spinner animation='border' size='sm' />
+            {isLoading ? <Spinner animation='border' size='sm' role="status" variant="light"/>
             : <Form>
                 {authType === 'registration' && 
                     <Form.Control 
