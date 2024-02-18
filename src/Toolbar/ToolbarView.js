@@ -47,14 +47,14 @@ export default function ToolbarView({
 
     return(
         <>
-        {authType&& <div className="center-all">
+        {authType&& <div className="center-all vertical-margins">
             <AuthLogic 
                 authType={authType}
                 HandleCloseAuth={HandleCloseAuth}
                 apiAddedParams={newParams.apiAddedParams}
             />
         </div>}
-        {openLoaderPage&&<div className="center-all">
+        {openLoaderPage&&<div className="center-all vertical-margins">
             <LoadPage 
                 openLoaderPage={openLoaderPage}
                 setOpenLoaderPage={setOpenLoaderPage}
@@ -63,7 +63,7 @@ export default function ToolbarView({
             />
         </div>}
         {(!authType&&!openLoaderPage)&&
-        <div className="toolbar-div">
+        <div className="toolbar-div vertical-margins">
             <Button 
                 className={`item-gapper ${newParams.editorColors.value}`}
                 onClick={(e)=>AddNewFile(e, newParams)}

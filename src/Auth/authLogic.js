@@ -11,6 +11,7 @@ export default function AuthLogic({
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [passType, setPassType] = useState('password');
 
     const auth = useContext(AuthContext);
 
@@ -34,6 +35,11 @@ export default function AuthLogic({
         headers: {'Content-Type': 'application/json'}
     } : null;
 
+    const HandleSwitchPassView = () => {
+        let passView = passType === 'password' ? 'text' : 'password';
+        setPassType(passView);
+    }
+
     return(
         <>
         <AuthView 
@@ -47,6 +53,8 @@ export default function AuthLogic({
             setEmail={setEmail}
             password={password}
             setPassword={setPassword}
+            passType={passType}
+            HandleSwitchPassView={HandleSwitchPassView}
             
             isLoading={apiAddedParams.isLoading}
             error={apiAddedParams.error}

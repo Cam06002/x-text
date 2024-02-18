@@ -1,6 +1,8 @@
 import React from "react";
 import { Button, Form, Spinner, Alert } from 'react-bootstrap';
 import CallApi from "../CallApi";
+import { BiShowAlt } from "react-icons/bi";
+import { BiHide } from "react-icons/bi";
 
 export default function AuthView({
     authType,
@@ -13,10 +15,13 @@ export default function AuthView({
     setEmail,
     password,
     setPassword,
+    passType,
+    HandleSwitchPassView,
 
     isLoading,
     error,
 }){
+
     return (
         <div>
             {isLoading ? <Spinner animation='border' size='sm' />
@@ -29,7 +34,8 @@ export default function AuthView({
                         onChange={(e)=>setName(e.target.value)}
                     />}
                 <Form.Control type='email' placeholder='email@example.com' value={email} onChange={(e)=>{setEmail(e.target.value)}}/>
-                <Form.Control type='password' value={password} onChange={(e)=>setPassword(e.target.value)}/>
+                <Form.Control type={passType} value={password} onChange={(e)=>setPassword(e.target.value)}/>
+                <span onClick={()=>HandleSwitchPassView()}>{passType==='password'?<BiHide />:<BiShowAlt/>}</span>
             </Form>}
             {error&&<div className='pink-text-box vertical-margins center-all'>
                 <Alert variant='warning'>{error}</Alert>
