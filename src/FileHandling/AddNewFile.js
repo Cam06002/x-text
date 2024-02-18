@@ -1,6 +1,6 @@
 import TextEdit from "../TextEditor/TextEdit";
 
-export default async function AddNewFile(event, newParams){
+export default async function AddNewFile(event, newParams, setEditorId){
     event.preventDefault();
     
     let newEditorContent = [{
@@ -15,9 +15,10 @@ export default async function AddNewFile(event, newParams){
 
     newParams.setEditorContent(newEditorContent);
     newParams.setTitle(newTitle);
+    setEditorId();
     let newEditorCount = newParams.editorChange + 1;
     newParams.setEditorChange(newEditorCount);
-
+    
     return(
         <TextEdit
             editorColors={newParams.editorColors}

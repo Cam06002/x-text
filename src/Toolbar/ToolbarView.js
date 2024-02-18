@@ -66,7 +66,7 @@ export default function ToolbarView({
         <div className="toolbar-div vertical-margins">
             <Button 
                 className={`item-gapper ${newParams.editorColors.value}`}
-                onClick={(e)=>AddNewFile(e, newParams)}
+                onClick={(e)=>AddNewFile(e, newParams, setEditorId)}
             >New</Button>
 
             {auth.isLoggedIn&&<Button 
