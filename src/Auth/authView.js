@@ -24,8 +24,8 @@ export default function AuthView({
 
     return (
         <div>
-            {isLoading ? <Spinner animation='border' size='sm' role="status" variant="light"/>
-            : <Form>
+            {!isLoading ? 
+            <Form>
                 {authType === 'registration' && 
                     <Form.Control 
                         type='text' 
@@ -36,7 +36,8 @@ export default function AuthView({
                 <Form.Control type='email' placeholder='email@example.com' value={email} onChange={(e)=>{setEmail(e.target.value)}}/>
                 <Form.Control type={passType} value={password} onChange={(e)=>setPassword(e.target.value)}/>
                 <span onClick={()=>HandleSwitchPassView()}>{passType==='password'?<BiHide />:<BiShowAlt/>}</span>
-            </Form>}
+            </Form>
+            :<Spinner animation='border' variant="light"/>}
             {error&&<div className='pink-text-box vertical-margins center-all'>
                 <Alert variant='warning'>{error}</Alert>
             </div>}
