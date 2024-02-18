@@ -37,7 +37,12 @@ export default function AuthView({
                 <Form.Control type={passType} value={password} onChange={(e)=>setPassword(e.target.value)}/>
                 <span onClick={()=>HandleSwitchPassView()}>{passType==='password'?<BiHide />:<BiShowAlt/>}</span>
             </Form>
-            :<Spinner animation='border' variant="light"/>}
+            :<div>
+                <span>
+                    <Spinner animation='border' variant="light"/>
+                    <p>Loading... Please Wait</p>
+                </span>
+            </div>}
             {error&&<div className='pink-text-box vertical-margins center-all'>
                 <Alert variant='warning'>{error}</Alert>
             </div>}
