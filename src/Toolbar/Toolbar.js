@@ -60,9 +60,9 @@ export default function Toolbar({
         setError();
     }
 
-    const HandleLogout = (e, newParams) => {
+    const HandleLogout = (e, newParams, setEditorId) => {
         auth.logout();
-        AddNewFile(e, newParams);
+        AddNewFile(e, newParams, setEditorId);
         setError();
     }
 

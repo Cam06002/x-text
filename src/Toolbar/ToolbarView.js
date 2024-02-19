@@ -83,7 +83,7 @@ export default function ToolbarView({
             >Delete</Button>}
             {auth.isLoggedIn&&<Button 
                 className={`item-gapper ${newParams.editorColors.value}`}
-                onClick={(e)=>HandleLogout(e, newParams)}
+                onClick={(e)=>HandleLogout(e, newParams, setEditorId)}
             >Logout</Button>}
 
             {!auth.isLoggedIn&&<Button 
