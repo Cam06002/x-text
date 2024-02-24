@@ -1,4 +1,5 @@
 import CallApi from "../CallApi";
+import { Encrypt } from "../Crypt/encryption";
 
 export default async function SaveFile(event, newParams, editorId, setEditorId){
     let apiParams = GetSaveParams(event, newParams, editorId);
@@ -9,6 +10,9 @@ export default async function SaveFile(event, newParams, editorId, setEditorId){
 
 function GetSaveParams(event, newParams, editorId){
     event.preventDefault();
+    let editorJson = JSON.stringify(editorId);
+    let encryptedObj = Encrypt(editorJson);
+    console.log(encryptedObj);
     
     let bodyData = JSON.stringify({
         title: newParams.title,
