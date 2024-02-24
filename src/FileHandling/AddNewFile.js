@@ -5,7 +5,8 @@ export default async function AddNewFile(event, newParams, setEditorId){
     
     let newEditorContent = [{
         type: 'paragraph',
-        children: [{ text: 'Delete me to start your new file.' }],
+        children: [{ text: `-x
+        ` }],
     }];
 
     let newTitle = "New File"
