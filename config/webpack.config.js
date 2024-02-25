@@ -297,10 +297,6 @@ module.exports = function (webpackEnv) {
       // We placed these paths second because we want `node_modules` to "win"
       // if there are any conflicts. This matches Node resolution mechanism.
       // https://github.com/facebook/create-react-app/issues/253
-      fallback: { 
-        stream: require.resolve("stream-browserify"),
-        crypto: require.resolve('crypto-browserify'),
-      },
 
       modules: ['node_modules', paths.appNodeModules].concat(
         modules.additionalModulePaths || []

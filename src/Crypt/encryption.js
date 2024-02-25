@@ -1,20 +1,21 @@
-const crypto = require('crypto');
+import { AES, enc } from "crypto-js";
 
-const EncryptEditor = (editorText)=> {
-    const secretKey = crypto.randomBytes(32);
-    const iv = crypto.randomBytes(16);
-    const cipher = crypto.createCipheriv("aes-256-ccm", secretKey, iv);
-    let encryptedEditor = cipher.update(editorText, "utf-8", "hex");
-    encryptedEditor += cipher.final("hex");
-
-    const encryptionObj = {
-        secretKey,
-        iv,
-        encryptedEditor
-    };
+export function Encrypt(editorText) {
+    const secretKey = 'thisISmyTESTsecretKEY';
+    const encryptedEditor = AES.encrypt(editorText, secretKey);
 
     console.log(encryptedEditor);
-    return encryptionObj;
+    return encryptedEditor;
 }
 
-exports.Encrypt = EncryptEditor;
+export function Decrypt(ecryptedEditor){
+    const secretKey = 'thisISmyTESTsecretKEY';
+
+    try{
+        const decryptedCipher = AES.decrypt(ecryptedEditor, secretKey);
+        const decryptedEditor = decryptedCipher.toString(enc.Utf8);
+        console.log(decryptedEditor);
+    } catch (err) {
+        console.log('Unable to decipher', err);
+    }
+}
