@@ -5,6 +5,7 @@ export default async function SaveFile(event, newParams, editorId, setEditorId){
     let apiParams = GetSaveParams(event, newParams, editorId);
     let res = await CallApi(apiParams, setEditorId);
     console.log(res);
+    
     return res;
 }
 
