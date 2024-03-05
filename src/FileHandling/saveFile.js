@@ -12,12 +12,14 @@ export default async function SaveFile(event, newParams, editorId, setEditorId){
 }
 
 function RaiseAlert(){
-    return <dialog open>
+    let myAlert = <dialog>
         <p>Saved Successfully!</p>
         <form method="dialog">
             <button>OK</button>
         </form>
     </dialog>
+
+    myAlert.showModal();
 }
 
 function GetSaveParams(event, newParams, editorId){
