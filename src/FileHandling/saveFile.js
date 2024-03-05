@@ -4,8 +4,10 @@ import { Encrypt } from "../Crypt/encryption";
 export default async function SaveFile(event, newParams, editorId, setEditorId){
     let apiParams = GetSaveParams(event, newParams, editorId);
     let res = await CallApi(apiParams, setEditorId);
-    console.log(res);
     
+    if(res.editor){
+        window.alert("Saved successfully!");
+    }
     return res;
 }
 
