@@ -13,7 +13,7 @@ function GetSaveParams(event, newParams, editorId){
     event.preventDefault();
     let editorJson = JSON.stringify(newParams.editorContent);
     let encryptedObj = Encrypt(editorJson);
-    console.log(encryptedObj);
+    let stringEncription = encryptedObj.toString();
     
     let bodyData = JSON.stringify({
         title: newParams.title,
