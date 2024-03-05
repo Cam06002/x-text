@@ -13,7 +13,9 @@ export default async function SaveFile(event, newParams, editorId, setEditorId){
 }
 
 function RaiseAlert(){
-    return (<Alert variant="success">Saved Successfully!</Alert>)
+    return <div className='pink-text-box vertical-margins center-all'>
+        <Alert>Saved Successfully!</Alert>
+    </div>    
 }
 
 function GetSaveParams(event, newParams, editorId){
