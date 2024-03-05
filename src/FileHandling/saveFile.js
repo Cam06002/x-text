@@ -18,7 +18,7 @@ function GetSaveParams(event, newParams, editorId){
     let bodyData = JSON.stringify({
         title: newParams.title,
         creator: newParams.apiAddedParams.auth.userId,
-        editorValue: newParams.editorContent
+        editorValue: encryptedObj
     });
 
     let apiParams;

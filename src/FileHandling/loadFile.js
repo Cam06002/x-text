@@ -1,11 +1,15 @@
 import CallApi from "../CallApi";
 import TextEdit from "../TextEditor/TextEdit";
+import { Decrypt } from "../Crypt/encryption";
 
 export default async function LoadFile(event, newParams, editorIdent, setEditorId){
     let fileToLoad = await GetFile(event, newParams.apiAddedParams, editorIdent);
     let loadedJournal = fileToLoad.journal.editorValue;
-    console.log(loadedJournal);
-    newParams.setEditorContent(loadedJournal);
+
+    let decryptedFile = Decrypt(loadedJournal);
+
+    console.log(decryptedFile);
+    newParams.setEditorContent(decryptedFile);
     let loadedTitle = fileToLoad.journal.title;
     newParams.setTitle(loadedTitle);
     let newEditorCount = newParams.editorChange + 1;
@@ -15,7 +19,7 @@ export default async function LoadFile(event, newParams, editorIdent, setEditorI
     return(
         <TextEdit
             editorColors={newParams.editorColors}
-            editorContent={loadedJournal}
+            editorContent={decryptedFile}
             setEditorContent={newParams.setEditorContent}
             title={loadedTitle}
             setTitle={newParams.setTitle}
