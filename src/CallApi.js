@@ -29,5 +29,6 @@ export default async function CallApi(apiParams, setEditorId) {
         apiParams.setError(err.message || 'Something went wrong. Please try again.');
     }
 
+    console.log(responseData);
     return responseData;
 }
