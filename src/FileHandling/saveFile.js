@@ -1,21 +1,14 @@
 import CallApi from "../CallApi";
 import { Encrypt } from "../Crypt/encryption";
-import { Alert } from "react-bootstrap";
 
 export default async function SaveFile(event, newParams, editorId, setEditorId){
     let apiParams = GetSaveParams(event, newParams, editorId);
     let res = await CallApi(apiParams, setEditorId);
     
     if(res.editor){
-        RaiseAlert();
+        window.alert("Saved successfully!");
     }
     return res;
-}
-
-function RaiseAlert(){
-    return <div className='pink-text-box vertical-margins center-all'>
-        <Alert>Saved Successfully!</Alert>
-    </div>    
 }
 
 function GetSaveParams(event, newParams, editorId){
