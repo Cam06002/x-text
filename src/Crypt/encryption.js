@@ -10,12 +10,14 @@ export function Encrypt(editorText) {
 
 export function Decrypt(ecryptedEditor){
     const secretKey = 'thisISmyTESTsecretKEY';
+    let decryptedEditor;
 
     try{
         const decryptedCipher = AES.decrypt(ecryptedEditor, secretKey);
-        const decryptedEditor = decryptedCipher.toString(enc.Utf8);
+        decryptedEditor = decryptedCipher.toString(enc.Utf8);
         console.log(decryptedEditor);
     } catch (err) {
         console.log('Unable to decipher', err);
     }
+    return decryptedEditor;
 }
