@@ -6,7 +6,7 @@ export default async function LoadFile(event, newParams, editorIdent, setEditorI
     let fileToLoad = await GetFile(event, newParams.apiAddedParams, editorIdent);
     let loadedJournal = fileToLoad.journal.editorValue;
     let parsedJournal = JSON.parse(loadedJournal);
-    let decryptedFile = Decrypt(loadedJournal);
+    let decryptedFile = Decrypt(parsedJournal);
 
     console.log(decryptedFile);
     newParams.setEditorContent(decryptedFile);
