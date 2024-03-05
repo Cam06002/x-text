@@ -19,7 +19,6 @@ export default function TextPage(){
     const onColorChange = (e) =>{
         setEditorColors(e);
         localStorage.setItem('style', JSON.stringify(e));
-        console.log(e);
     }
 
     document.body.style.backgroundColor = editorColors.label;

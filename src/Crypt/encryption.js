@@ -4,7 +4,6 @@ export function Encrypt(editorText) {
     const secretKey = 'thisISmyTESTsecretKEY';
     const encryptedEditor = AES.encrypt(editorText, secretKey);
 
-    console.log(encryptedEditor);
     return encryptedEditor;
 }
 
@@ -15,7 +14,6 @@ export function Decrypt(ecryptedEditor){
     try{
         const decryptedCipher = AES.decrypt(ecryptedEditor, secretKey);
         decryptedEditor = decryptedCipher.toString(enc.Utf8);
-        console.log(decryptedEditor);
     } catch (err) {
         console.log('Unable to decipher', err);
     }

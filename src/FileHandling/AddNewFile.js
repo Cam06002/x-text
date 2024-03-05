@@ -12,7 +12,6 @@ export default async function AddNewFile(event, newParams, setEditorId){
     let newTitle = "New File"
     localStorage.setItem('title', newTitle);
     localStorage.setItem('content', JSON.stringify(newEditorContent))
-    console.log(newEditorContent);
 
     newParams.setEditorContent(newEditorContent);
     newParams.setTitle(newTitle);

@@ -10,7 +10,6 @@ export default function LoadedEditorsCards({
 }){
     if(loadedEditors.userFiles){
         let editorCards = loadedEditors.userFiles.map(editor => {
-            console.log(editor.id);
             return(
                 <Button
                     onClick={(e)=> {

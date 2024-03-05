@@ -13,7 +13,7 @@ export default async function SaveFile(event, newParams, editorId, setEditorId){
 }
 
 function RaiseAlert(){
-    return <Alert>Saved Successfully!</Alert>
+    return (<Alert variant="success">Saved Successfully!</Alert>)
 }
 
 function GetSaveParams(event, newParams, editorId){

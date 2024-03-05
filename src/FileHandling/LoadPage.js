@@ -30,7 +30,6 @@ export default function LoadPage({
             try {
                 const files = await CallApi(apiParams);
                 setLoadedEditors(files);
-                console.log(files);
             } catch (err) {
                 console.log(err);
             }
