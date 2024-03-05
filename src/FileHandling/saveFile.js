@@ -11,7 +11,7 @@ export default async function SaveFile(event, newParams, editorId, setEditorId){
 
 function GetSaveParams(event, newParams, editorId){
     event.preventDefault();
-    let editorJson = JSON.stringify(editorId);
+    let editorJson = JSON.stringify(newParams.editorContent);
     let encryptedObj = Encrypt(editorJson);
     console.log(encryptedObj);
     
