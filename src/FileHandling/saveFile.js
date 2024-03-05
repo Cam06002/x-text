@@ -6,9 +6,18 @@ export default async function SaveFile(event, newParams, editorId, setEditorId){
     let res = await CallApi(apiParams, setEditorId);
     
     if(res.editor){
-        window.alert("Saved successfully!");
+        RaiseAlert();
     }
     return res;
+}
+
+function RaiseAlert(){
+    return <dialog open>
+        <p>Saved Successfully!</p>
+        <form method="dialog">
+            <button>OK</button>
+        </form>
+    </dialog>
 }
 
 function GetSaveParams(event, newParams, editorId){
