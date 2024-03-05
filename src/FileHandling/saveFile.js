@@ -1,5 +1,6 @@
 import CallApi from "../CallApi";
 import { Encrypt } from "../Crypt/encryption";
+import { Alert } from "react-bootstrap";
 
 export default async function SaveFile(event, newParams, editorId, setEditorId){
     let apiParams = GetSaveParams(event, newParams, editorId);
@@ -12,14 +13,7 @@ export default async function SaveFile(event, newParams, editorId, setEditorId){
 }
 
 function RaiseAlert(){
-    let myAlert = <dialog>
-        <p>Saved Successfully!</p>
-        <form method="dialog">
-            <button>OK</button>
-        </form>
-    </dialog>
-
-    myAlert.showModal();
+    return <Alert>Saved Successfully!</Alert>
 }
 
 function GetSaveParams(event, newParams, editorId){
