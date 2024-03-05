@@ -19,5 +19,5 @@ export function Decrypt(ecryptedEditor){
     } catch (err) {
         console.log('Unable to decipher', err);
     }
-    return decryptedEditor;
+    return JSON.parse(decryptedEditor);
 }
