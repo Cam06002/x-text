@@ -5,6 +5,7 @@ import { Decrypt } from "../Crypt/encryption";
 export default async function LoadFile(event, newParams, editorIdent, setEditorId){
     let fileToLoad = await GetFile(event, newParams.apiAddedParams, editorIdent);
     let loadedJournal = fileToLoad.journal.editorValue;
+    console.log(loadedJournal);
     let decryptedFile = Decrypt(loadedJournal);
 
     console.log(decryptedFile);
