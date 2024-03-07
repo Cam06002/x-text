@@ -1,6 +1,5 @@
 import React, {useContext} from "react";
 import { Button } from "react-bootstrap";
-import Select from "react-select";
 import { AuthContext } from "../Auth/authContext";
 import SaveFile from "../FileHandling/saveFile";
 import AddNewFile from "../FileHandling/AddNewFile";
@@ -26,25 +25,6 @@ export default function ToolbarView({
 }){
     const auth = useContext(AuthContext);
 
-    const customSelectStyles = {
-        control: (base, state) => ({
-            ...base,
-            backgroundColor: newParams.editorColors.label,
-            color: state.isSelected ? (newParams.editorColors.label === 'blue' 
-                || newParams.editorColors.label === 'black'
-                || newParams.editorColors.label === 'green') ? 'white' : 'black' : 'white'
-        }),
-        option: (base) => {;
-            return {
-                ...base,
-                backgroundColor: newParams.editorColors.label,
-                color: (newParams.editorColors.label === 'blue' 
-                    || newParams.editorColors.label === 'black'
-                    || newParams.editorColors.label === 'green') ? 'white' : 'black'
-            }
-        }
-    };
-
     return(
         <>
         {authType&& <div className="center-all vertical-margins">
@@ -65,43 +45,43 @@ export default function ToolbarView({
         {(!authType&&!openLoaderPage)&&
         <div className="toolbar-div vertical-margins">
             <Button 
-                className={`item-gapper ${newParams.editorColors.value}`}
+                className={`item-gapper ${newParams.editorColors}`}
                 onClick={(e)=>AddNewFile(e, newParams, setEditorId)}
             >New</Button>
 
             {auth.isLoggedIn&&<Button 
-                className={`item-gapper ${newParams.editorColors.value}`}
+                className={`item-gapper ${newParams.editorColors}`}
                 onClick={(e)=>SaveFile(e, newParams, editorId, setEditorId)}
             >Save</Button>}
             {auth.isLoggedIn&&<Button 
-                className={`item-gapper ${newParams.editorColors.value}`}
+                className={`item-gapper ${newParams.editorColors}`}
                 onClick={()=>setOpenLoaderPage(true)}
             >Load</Button>}
             {auth.isLoggedIn&&<Button 
-                className={`item-gapper ${newParams.editorColors.value}`}
+                className={`item-gapper ${newParams.editorColors}`}
                 onClick={(e)=>DeleteFile(e, newParams, editorId, setEditorId)}
             >Delete</Button>}
             {auth.isLoggedIn&&<Button 
-                className={`item-gapper ${newParams.editorColors.value}`}
+                className={`item-gapper ${newParams.editorColors}`}
                 onClick={(e)=>HandleLogout(e, newParams, setEditorId)}
             >Logout</Button>}
 
             {!auth.isLoggedIn&&<Button 
-                className={`item-gapper ${newParams.editorColors.value}`}
+                className={`item-gapper ${newParams.editorColors}`}
                 onClick={()=>HandleOpenLogin()}
             >Log In</Button>}
 
             {!auth.isLoggedIn&&<Button 
-                className={`item-gapper ${newParams.editorColors.value}`}
+                className={`item-gapper ${newParams.editorColors}`}
                 onClick={()=>HandleOpenRegistration()}
             >Register</Button>}
 
-            <Select
-                options={colorOptions}
-                value={newParams.editorColors}
-                onChange={(e)=>{onColorChange(e)}}
-                styles={customSelectStyles}
-            />
+            <select className={newParams.editorColors} onChange={(e)=>onColorChange(e.target.value)}>
+                <option value="blue-text-box">blue</option>
+                <option value="green-text-box">green</option>
+                <option value="black-text-box">black</option>
+                <option value="pink-text-box">pink</option>
+            </select>
         </div>}
         </>
     )

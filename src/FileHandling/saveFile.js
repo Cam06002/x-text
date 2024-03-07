@@ -1,12 +1,16 @@
+import { useState } from "react";
 import CallApi from "../CallApi";
 import { Encrypt } from "../Crypt/encryption";
+import SavePopup from "../Components/SavePopup";
 
 export default async function SaveFile(event, newParams, editorId, setEditorId){
+    const [savePopup, setSavePopup] = useState(false);
     let apiParams = GetSaveParams(event, newParams, editorId);
     let res = await CallApi(apiParams, setEditorId);
     
     if(res.editor){
-        window.alert("Saved successfully!");
+        setSavePopup(true);
+        return <SavePopup savePopup={savePopup} setSavePopup={setSavePopup}/>
     }
     return res;
 }

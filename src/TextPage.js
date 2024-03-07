@@ -7,7 +7,7 @@ export default function TextPage(){
 
     const [editorColors, setEditorColors] = useState(
         JSON.parse(localStorage.getItem('style')) ||
-        {value: 'black-text-box', label: 'black'}
+        'black-text-box'
     );
     const [editorContent, setEditorContent] = useState(false);
     const [editorChange, setEditorChange] = useState(0);
@@ -17,15 +17,16 @@ export default function TextPage(){
         'New File');
     
     const onColorChange = (e) =>{
+        console.log(e);
         setEditorColors(e);
         localStorage.setItem('style', JSON.stringify(e));
     }
 
-    document.body.style.backgroundColor = editorColors.label;
+    document.body.style.backgroundColor = editorColors;
 
     return(
         <>
-        <div className={editorColors.value}>
+        <div className={editorColors}>
             <div className="toolbar-div">
                 <Toolbar 
                     editorColors={editorColors}
