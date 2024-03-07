@@ -6,7 +6,6 @@
 
 body {
   font-family: 'Noto Sans Mono';
-  animation: flicker 0.15s infinite;
 }
 
 .black-text-box {
@@ -88,28 +87,4 @@ body {
 .editor-card {
   display: flex;
   padding: .5rem;
-}
-
-@keyframes fuzz {
-  0% {opacity: 0.25;}
-  5% {opacity: 0.74;}
-  10% {opacity: 0.35;}
-  15% {opacity: 0.64;}
-  20% {opacity: 0.25;}
-  25% {opacity: 0.94;}
-  30% {opacity: 0.85;}
-  35% {opacity: 0.24;}
-  40% {opacity: 0.15;}
-  45% {opacity: 0.94;}
-  50% {opacity: 0.25;}
-  55% {opacity: 0.74;}
-  60% {opacity: 0.85;}
-  65% {opacity: 0.24;}
-  70% {opacity: 0.35;}
-  75% {opacity: 0.44;}
-  80% {opacity: 0.95;}
-  85% {opacity: 0.04;}
-  90% {opacity: 0.25;}
-  95% {opacity: 0.94;}
-  100% {opacity: 0.85;}
 }
