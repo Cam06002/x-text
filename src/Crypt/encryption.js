@@ -1,14 +1,14 @@
 import { AES, enc } from "crypto-js";
 
 export function Encrypt(editorText) {
-    const secretKey = 'thisISmyTESTsecretKEY';
+    const secretKey = process.env.REACT_APP_SECRET_KEY;
     const encryptedEditor = AES.encrypt(editorText, secretKey);
 
     return encryptedEditor;
 }
 
 export function Decrypt(ecryptedEditor){
-    const secretKey = 'thisISmyTESTsecretKEY';
+    const secretKey = process.env.REACT_APP_SECRET_KEY;
     let decryptedEditor;
 
     try{
