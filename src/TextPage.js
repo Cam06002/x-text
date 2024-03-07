@@ -11,6 +11,7 @@ export default function TextPage(){
     );
     const [editorContent, setEditorContent] = useState(false);
     const [editorChange, setEditorChange] = useState(0);
+    const [successfulSave, setSuccessfulSave] = useState(false);
 
     const [title, setTitle] = useState(
         localStorage.getItem('title') ? localStorage.getItem('title') :
@@ -23,32 +24,34 @@ export default function TextPage(){
     }
 
     return(
-        <>
-        <div className={editorColors}>
-            <div className="toolbar-div">
-                <Toolbar 
-                    editorColors={editorColors}
-                    onColorChange={onColorChange}
-                    editorContent={editorContent}
-                    setEditorContent={setEditorContent}
-                    title={title}
-                    setTitle={setTitle}
-                    editorChange={editorChange}
-                    setEditorChange={setEditorChange}
-                />
+        <body className={editorColors}>
+            <div className={editorColors}>
+                <div className="toolbar-div">
+                    <Toolbar 
+                        editorColors={editorColors}
+                        onColorChange={onColorChange}
+                        editorContent={editorContent}
+                        setEditorContent={setEditorContent}
+                        title={title}
+                        setTitle={setTitle}
+                        editorChange={editorChange}
+                        setEditorChange={setEditorChange}
+                        successfulSave={successfulSave}
+                        setSuccessfulSave={setSuccessfulSave}
+                    />
+                </div>
+                
+                <div className="box-sizer">
+                    <TextEdit 
+                        editorColors={editorColors}
+                        editorContent={editorContent}
+                        setEditorContent={setEditorContent}
+                        title={title}
+                        setTitle={setTitle}
+                        editorChange={editorChange}
+                    />
+                </div>
             </div>
-            
-            <div className="box-sizer">
-                <TextEdit 
-                    editorColors={editorColors}
-                    editorContent={editorContent}
-                    setEditorContent={setEditorContent}
-                    title={title}
-                    setTitle={setTitle}
-                    editorChange={editorChange}
-                />
-            </div>
-        </div>
-        </>
+        </body>
     )
 }

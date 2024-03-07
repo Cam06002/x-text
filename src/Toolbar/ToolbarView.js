@@ -8,7 +8,6 @@ import LoadPage from "../FileHandling/LoadPage";
 import DeleteFile from "../FileHandling/DeleteFile";
 
 export default function ToolbarView({
-    colorOptions,
     onColorChange,
     newParams,
 
@@ -27,6 +26,10 @@ export default function ToolbarView({
 
     return(
         <>
+        <dialog open={newParams.successfulSave}>
+            <p>Saved Successfully!</p>
+            <button onClick={()=>newParams.setSuccessfulSave(false)}>Okay</button>
+        </dialog>
         {authType&& <div className="center-all vertical-margins">
             <AuthLogic 
                 authType={authType}
@@ -76,7 +79,7 @@ export default function ToolbarView({
                 onClick={()=>HandleOpenRegistration()}
             >Register</Button>}
 
-            <select className={newParams.editorColors} onChange={(e)=>onColorChange(e.target.value)}>
+            <select className={newParams.editorColors} value={newParams.editorColors} onChange={(e)=>onColorChange(e.target.value)}>
                 <option value="blue-text-box">blue</option>
                 <option value="green-text-box">green</option>
                 <option value="black-text-box">black</option>

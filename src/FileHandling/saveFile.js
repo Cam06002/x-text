@@ -6,7 +6,7 @@ export default async function SaveFile(event, newParams, editorId, setEditorId){
     let res = await CallApi(apiParams, setEditorId);
     
     if(res.editor){
-        window.alert("Saved Successfully");
+        newParams.setSuccessfulSave(true);
     }
     return res;
 }

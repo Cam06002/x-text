@@ -11,14 +11,10 @@ export default function Toolbar({
     title,
     setTitle,
     editorChange,
-    setEditorChange
+    setEditorChange,
+    successfulSave,
+    setSuccessfulSave
 }){
-    const colorOptions = [
-        {value: 'blue-text-box', label: 'blue'},
-        {value: 'green-text-box', label: 'green'},
-        {value: 'black-text-box', label: 'black'},
-        {value: 'pink-text-box', label: 'pink'}
-    ];
 
     const [authType, setAuthType] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -44,7 +40,9 @@ export default function Toolbar({
         setTitle: setTitle,
         apiAddedParams: apiAddedParams,
         editorChange: editorChange,
-        setEditorChange: setEditorChange
+        setEditorChange: setEditorChange,
+        successfulSave: successfulSave,
+        setSuccessfulSave: setSuccessfulSave
     };
 
     const HandleOpenLogin = () => {
