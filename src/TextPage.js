@@ -22,8 +22,6 @@ export default function TextPage(){
         localStorage.setItem('style', JSON.stringify(e));
     }
 
-    document.body.style = editorColors;
-
     return(
         <>
         <div className={editorColors}>
