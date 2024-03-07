@@ -67,7 +67,6 @@ export default function Toolbar({
     return(
         <>
         <ToolbarView 
-            colorOptions={colorOptions}
             onColorChange={onColorChange}
             newParams={newParams}
 
