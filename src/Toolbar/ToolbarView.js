@@ -26,7 +26,7 @@ export default function ToolbarView({
 
     return(
         <>
-        <dialog open={newParams.successfulSave} className={`vertical-margins center-all ${newParams.editorColors}`}>
+        <dialog open={newParams.successfulSave} className={newParams.editorColors}>
             <p>Saved Successfully!</p>
             <button onClick={()=>newParams.setSuccessfulSave(false)}>Okay</button>
         </dialog>
