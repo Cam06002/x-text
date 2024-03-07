@@ -22,7 +22,7 @@ export default function TextPage(){
         localStorage.setItem('style', JSON.stringify(e));
     }
 
-    document.body.style.backgroundColor = editorColors;
+    document.body.style = editorColors;
 
     return(
         <>

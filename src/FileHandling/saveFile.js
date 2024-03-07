@@ -4,12 +4,11 @@ import { Encrypt } from "../Crypt/encryption";
 import SavePopup from "../Components/SavePopup";
 
 export default async function SaveFile(event, newParams, editorId, setEditorId){
-    const [savePopup, setSavePopup] = useState(false);
+    const [savePopup, setSavePopup] = useState(true);
     let apiParams = GetSaveParams(event, newParams, editorId);
     let res = await CallApi(apiParams, setEditorId);
     
     if(res.editor){
-        setSavePopup(true);
         return <SavePopup savePopup={savePopup} setSavePopup={setSavePopup}/>
     }
     return res;
