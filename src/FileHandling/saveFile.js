@@ -9,7 +9,7 @@ export default async function SaveFile(event, newParams, editorId, setEditorId){
     let res = await CallApi(apiParams, setEditorId);
     
     if(res.editor){
-        return <SavePopup savePopup={savePopup} setSavePopup={setSavePopup}/>
+        window.alert("Saved Successfully");
     }
     return res;
 }
